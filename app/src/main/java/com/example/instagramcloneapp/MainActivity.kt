@@ -16,8 +16,6 @@ import com.example.instagramcloneapp.Fragments.SearchFragment
 
 class MainActivity : AppCompatActivity()
 {
-    internal var selectedFragment: Fragment? = null
-
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -26,23 +24,24 @@ class MainActivity : AppCompatActivity()
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
-        supportFragmentManager.beginTransaction().replace(
-            R.id.fragment_container,
-            HomeFragment()
-        ).commit()
+        routeToFragment(HomeFragment())
     }
+
+    /*Desmond Stop: Finished EP5, Start EP6*/
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId)
         {
             R.id.nav_home ->
             {
-                selectedFragment = HomeFragment()
+                routeToFragment(HomeFragment())
+                return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_search ->
             {
-                selectedFragment = SearchFragment()
+                routeToFragment(SearchFragment())
+                return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_add_post ->
@@ -52,23 +51,24 @@ class MainActivity : AppCompatActivity()
 
             R.id.nav_notifications ->
             {
-                selectedFragment = NotificationFragment()
+                routeToFragment(NotificationFragment())
+                return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_profile ->
             {
-                selectedFragment = ProfileFragment()
+                routeToFragment(ProfileFragment())
+                return@OnNavigationItemSelectedListener true
             }
         }
 
-        if (selectedFragment != null)
-        {
-            supportFragmentManager.beginTransaction().replace(
-                R.id.fragment_container,
-                selectedFragment!!
-            ).commit()
-        }
-
         false
+    }
+
+    private fun routeToFragment(fragment: Fragment)
+    {
+        val routeFrag = supportFragmentManager.beginTransaction()
+        routeFrag.replace(R.id.fragment_container, fragment)
+        routeFrag.commit()
     }
 }
