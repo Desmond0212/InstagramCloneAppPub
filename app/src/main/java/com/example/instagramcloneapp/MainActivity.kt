@@ -1,5 +1,6 @@
 package com.example.instagramcloneapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -27,8 +28,6 @@ class MainActivity : AppCompatActivity()
         routeToFragment(HomeFragment())
     }
 
-    /*Desmond Stop: Finished EP5, Start EP6*/
-
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId)
         {
@@ -46,6 +45,8 @@ class MainActivity : AppCompatActivity()
 
             R.id.nav_add_post ->
             {
+                item.isChecked = false
+                startActivity(Intent(this, AddPostActivity::class.java))
                 return@OnNavigationItemSelectedListener true
             }
 

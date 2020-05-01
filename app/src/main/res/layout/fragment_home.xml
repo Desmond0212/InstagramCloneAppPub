@@ -48,4 +48,14 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/empty_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar_layout"
+        android:text="You don't have any post yet."
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:visibility="gone"/>
+
 </RelativeLayout>
