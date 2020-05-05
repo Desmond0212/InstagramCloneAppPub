@@ -77,6 +77,7 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
         isLikes(post.getPostid(), holder.likeButton)
         numberOfLikes(holder.likes, post.getPostid())
         getTotalComments(holder.comments, post.getPostid())
+        checkSavedStatus(post.getPostid()!!, holder.saveButton)
 
         if (post.getDescription().equals(""))
         {
@@ -122,6 +123,23 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
             intentComment.putExtra("postId", post.getPostid())
             intentComment.putExtra("publisherId", post.getPublisher())
             mContext.startActivity(intentComment)
+        }
+
+        holder.saveButton.setOnClickListener {
+            if (holder.saveButton.tag == "Save")
+            {
+                FirebaseDatabase.getInstance().reference.child("Saves")
+                    .child(firebaseUser!!.uid)
+                    .child(post.getPostid()!!)
+                    .setValue(true)
+            }
+            else
+            {
+                FirebaseDatabase.getInstance().reference.child("Saves")
+                    .child(firebaseUser!!.uid)
+                    .child(post.getPostid()!!)
+                    .removeValue()
+            }
         }
     }
 
@@ -201,6 +219,31 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
                     Picasso.get().load(user!!.getImage()).placeholder(R.drawable.profile).into(profileImage)
                     userName.text = user.getUsername()
                     publisher.text = user.getFullname()
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {}
+        })
+    }
+
+    private fun checkSavedStatus(postid: String, imageView: ImageView)
+    {
+        val savesRef= FirebaseDatabase.getInstance().reference.child("Saves")
+            .child(firebaseUser!!.uid)
+
+        savesRef.addValueEventListener(object : ValueEventListener
+        {
+            override fun onDataChange(p0: DataSnapshot)
+            {
+                if (p0.child(postid).exists())
+                {
+                    imageView.setImageResource(R.drawable.save_large_icon)
+                    imageView.tag = "Saved"
+                }
+                else
+                {
+                    imageView.setImageResource(R.drawable.save_unfilled_large_icon)
+                    imageView.tag = "Save"
                 }
             }
 
