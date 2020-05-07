@@ -111,6 +111,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/layout_followers_profile"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="7dp"
@@ -136,6 +137,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/layout_following_profile"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="7dp"

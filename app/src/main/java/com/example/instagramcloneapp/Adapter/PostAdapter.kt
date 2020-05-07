@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagramcloneapp.CommentsActivity
 import com.example.instagramcloneapp.MainActivity
 import com.example.instagramcloneapp.Model.PostModel
 import com.example.instagramcloneapp.Model.UserModel
 import com.example.instagramcloneapp.R
+import com.example.instagramcloneapp.ShowUsersActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -23,6 +25,7 @@ import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_account_settings.*
+import kotlinx.android.synthetic.main.activity_comments.*
 
 class PostAdapter(private val mContext: Context, private val mPost: List<PostModel>) : RecyclerView.Adapter<PostAdapter.ViewHolder>()
 {
@@ -97,6 +100,8 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
                     .child(post.getPostid()!!)
                     .child(firebaseUser!!.uid)
                     .setValue(true)
+
+                addNotification(post.getPublisher()!!, post.getPostid()!!)
             }
             else
             {
@@ -140,6 +145,13 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
                     .child(post.getPostid()!!)
                     .removeValue()
             }
+        }
+
+        holder.likes.setOnClickListener {
+            val intent = Intent(mContext, ShowUsersActivity::class.java)
+            intent.putExtra("id", post.getPostid())
+            intent.putExtra("title", "likes")
+            mContext.startActivity(intent)
         }
     }
 
@@ -249,5 +261,18 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
 
             override fun onCancelled(p0: DatabaseError) {}
         })
+    }
+
+    private fun addNotification(userId: String, postId: String)
+    {
+        val notifRef = FirebaseDatabase.getInstance().reference.child("Notifications").child(userId)
+        val notifMap = HashMap<String, Any>()
+
+        notifMap["userid"] = firebaseUser!!.uid
+        notifMap["text"] = "Liked your post"
+        notifMap["postid"] = postId
+        notifMap["ispost"] = true
+
+        notifRef.push().setValue(notifMap)
     }
 }

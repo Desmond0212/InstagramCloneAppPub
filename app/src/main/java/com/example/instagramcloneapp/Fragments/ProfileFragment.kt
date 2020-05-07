@@ -16,6 +16,7 @@ import com.example.instagramcloneapp.Adapter.MyImagesAdapter
 import com.example.instagramcloneapp.Model.PostModel
 import com.example.instagramcloneapp.Model.UserModel
 import com.example.instagramcloneapp.R
+import com.example.instagramcloneapp.ShowUsersActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -113,6 +114,20 @@ class ProfileFragment : Fragment()
             recyclerViewUploadImages.visibility = View.GONE
         }
 
+        view.layout_followers_profile.setOnClickListener {
+            val intent = Intent(context, ShowUsersActivity::class.java)
+            intent.putExtra("id", profileId)
+            intent.putExtra("title", "followers")
+            startActivity(intent)
+        }
+
+        view.layout_following_profile.setOnClickListener {
+            val intent = Intent(context, ShowUsersActivity::class.java)
+            intent.putExtra("id", profileId)
+            intent.putExtra("title", "following")
+            startActivity(intent)
+        }
+
         view.edit_account_settings_btn.setOnClickListener{
             val getButtonText = view.edit_account_settings_btn.text.toString()
 
@@ -138,6 +153,8 @@ class ProfileFragment : Fragment()
                             .child("Followers").child(it.toString())
                             .setValue(true)
                     }
+
+                    addNotification()
                 }
 
                 getButtonText == "Following" ->
@@ -271,7 +288,7 @@ class ProfileFragment : Fragment()
 
     private fun userInfo()
     {
-        val usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(profileId)
+        val usersRef = FirebaseDatabase.getInstance().reference.child("Users").child(profileId)
 
         usersRef.addValueEventListener(object : ValueEventListener
         {
@@ -409,5 +426,18 @@ class ProfileFragment : Fragment()
 
             override fun onCancelled(p0: DatabaseError) {}
         })
+    }
+
+    private fun addNotification()
+    {
+        val notifRef = FirebaseDatabase.getInstance().reference.child("Notifications").child(profileId)
+        val notifMap = HashMap<String, Any>()
+
+        notifMap["userid"] = firebaseUser!!.uid
+        notifMap["text"] = "Started following you"
+        notifMap["postid"] = ""
+        notifMap["ispost"] = false
+
+        notifRef.push().setValue(notifMap)
     }
 }
