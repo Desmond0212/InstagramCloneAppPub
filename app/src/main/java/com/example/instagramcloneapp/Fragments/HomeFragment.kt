@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagramcloneapp.Adapter.PostAdapter
+import com.example.instagramcloneapp.Adapter.StoryAdapter
 import com.example.instagramcloneapp.Model.PostModel
+import com.example.instagramcloneapp.Model.StoryModel
 
 import com.example.instagramcloneapp.R
 import com.google.firebase.auth.FirebaseAuth
@@ -26,16 +28,18 @@ class HomeFragment : Fragment()
 {
     private var postAdapter: PostAdapter? = null
     private var postList: MutableList<PostModel>? = null
-    private var followingList: MutableList<PostModel>? = null
+    private var followingList: MutableList<String>? = null
+    private var storyAdapter: StoryAdapter? = null
+    private var storyList:MutableList<StoryModel>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        //Recycler View Home
         var recyclerView: RecyclerView? = null
         recyclerView = view.findViewById(R.id.recycler_view_home)
-
         val linearLayoutManager = LinearLayoutManager(context)
         linearLayoutManager.reverseLayout = true
         linearLayoutManager.stackFromEnd = true
@@ -44,6 +48,17 @@ class HomeFragment : Fragment()
         postList = ArrayList()
         postAdapter = context?.let {PostAdapter(it, postList as ArrayList<PostModel>)}
         recyclerView.adapter = postAdapter
+        recyclerView.setHasFixedSize(true)
+
+        //Recycler View Story
+        var recyclerViewStory: RecyclerView? = null
+        recyclerViewStory = view.findViewById(R.id.recycler_view_story)
+        val linearLayoutManager2 = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false) // To set scroll with Horizontal
+        recyclerViewStory.layoutManager = linearLayoutManager2
+
+        storyList = ArrayList()
+        storyAdapter = context?.let { StoryAdapter(it, storyList as ArrayList<StoryModel>) }
+        recyclerViewStory.adapter = storyAdapter
 
         checkFollowings()
 
@@ -72,6 +87,7 @@ class HomeFragment : Fragment()
                     }
 
                     retrievePosts()
+                    retrieveStories()
                 }
             }
 
@@ -114,6 +130,48 @@ class HomeFragment : Fragment()
                     view?.empty_post?.visibility = View.GONE
                     view?.recycler_view_home?.visibility = View.VISIBLE
                 }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {}
+        })
+    }
+
+    private fun retrieveStories()
+    {
+        val storyRef = FirebaseDatabase.getInstance().reference.child("Story")
+
+        storyRef.addValueEventListener(object : ValueEventListener
+        {
+            override fun onDataChange(p0: DataSnapshot)
+            {
+                val currentTime = System.currentTimeMillis()
+
+                (storyList as ArrayList<StoryModel>).clear()
+
+                (storyList as ArrayList<StoryModel>).add(StoryModel("", 0, 0, "", FirebaseAuth.getInstance().currentUser?.uid))
+
+                for (id in followingList!!)
+                {
+                    var countStory = 0
+                    var story: StoryModel? = null
+
+                    for (snapshot in p0.child(id).children)
+                    {
+                        story = snapshot.getValue(StoryModel::class.java)
+
+                        if (currentTime > story!!.getTimeStart()!! && currentTime < story.getTimeEnd()!!)
+                        {
+                            countStory++
+                        }
+                    }
+
+                    if (countStory > 0)
+                    {
+                        (storyList as ArrayList<StoryModel>).add(story!!)
+                    }
+                }
+
+                storyAdapter?.notifyDataSetChanged()
             }
 
             override fun onCancelled(p0: DatabaseError) {}

@@ -298,10 +298,10 @@ class ProfileFragment : Fragment()
                 {
                     val user = p0.getValue<UserModel>(UserModel::class.java)
 
-                    Picasso.get().load(user!!.getImage()).placeholder(R.drawable.profile).into(view?.pro_image_profile_frag)
-                    view?.profile_fragment_username?.text = user.getUsername()
-                    view?.full_name_profile_frag?.text = user.getFullname()
-                    view?.bio_profile_frag?.text = user.getBio()
+                    Picasso.get().load(user?.getImage()).placeholder(R.drawable.profile).into(view?.pro_image_profile_frag)
+                    view?.profile_fragment_username?.text = user?.getUsername()
+                    view?.full_name_profile_frag?.text = user?.getFullname()
+                    view?.bio_profile_frag?.text = user?.getBio()
                 }
             }
 
@@ -362,7 +362,7 @@ class ProfileFragment : Fragment()
                         }
                     }
 
-                    total_posts.text = " $postCounter"
+                    total_posts.text = postCounter.toString()//" $postCounter"
                 }
             }
 

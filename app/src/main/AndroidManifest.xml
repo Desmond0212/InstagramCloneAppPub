@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowUsersActivity"></activity>
+        <activity android:name=".StoryActivity"></activity>
+        <activity android:name=".AddStoryActivity" />
+        <activity android:name=".ShowUsersActivity" />
         <activity android:name=".CommentsActivity" />
         <activity android:name=".AddPostActivity" />
         <activity android:name=".SignUpActivity" />

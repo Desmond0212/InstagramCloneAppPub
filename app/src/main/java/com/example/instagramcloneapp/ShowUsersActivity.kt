@@ -16,8 +16,8 @@ import kotlinx.android.synthetic.main.fragment_search.view.*
 
 class ShowUsersActivity : AppCompatActivity()
 {
-    var id: String = ""
-    var title: String = ""
+    var id: String? = ""
+    var title: String? = ""
     var userAdapter: UserAdapter? = null
     var userList: List<UserModel>? = null
     var idList: List<String>? = null
@@ -54,12 +54,38 @@ class ShowUsersActivity : AppCompatActivity()
             "likes"     -> getLikes()
             "following" -> getFollowing()
             "followers" -> getFollowers()
+            "views"     -> getViews()
         }
+    }
+
+    private fun getViews()
+    {
+        val ref = FirebaseDatabase.getInstance().reference
+            .child("Story")
+            .child(id!!)
+            .child(intent.getStringExtra("storyid"))
+            .child("views")
+
+        ref.addValueEventListener(object : ValueEventListener
+        {
+            override fun onDataChange(p0: DataSnapshot)
+            {
+                (idList as ArrayList<String>)
+
+                for (snapshot in p0.children)
+                {
+                    (idList as ArrayList<String>).add(snapshot.key!!)
+                }
+                showUsers()
+            }
+
+            override fun onCancelled(p0: DatabaseError) {}
+        })
     }
 
     private fun getLikes()
     {
-        val likesRef = FirebaseDatabase.getInstance().reference.child("Likes").child(id)
+        val likesRef = FirebaseDatabase.getInstance().reference.child("Likes").child(id!!)
 
         likesRef.addValueEventListener(object : ValueEventListener
         {
@@ -114,7 +140,7 @@ class ShowUsersActivity : AppCompatActivity()
     private fun getFollowing()
     {
         val followersRef = FirebaseDatabase.getInstance().reference
-            .child("Follow").child(id)
+            .child("Follow").child(id!!)
             .child("Following")
 
 
@@ -138,7 +164,7 @@ class ShowUsersActivity : AppCompatActivity()
     private fun getFollowers()
     {
         val followersRef = FirebaseDatabase.getInstance().reference
-            .child("Follow").child(id)
+            .child("Follow").child(id!!)
             .child("Followers")
 
         followersRef.addValueEventListener(object : ValueEventListener
