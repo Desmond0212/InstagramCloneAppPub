@@ -55,21 +55,25 @@ class NotificationAdapter(private val mContext: Context, private val mNotificati
     {
         val notification = mNotification[position]
 
-        if (notification.getText().equals("Started following you"))
+        when
         {
-            holder.text.text = "Started following you"
-        }
-        else if (notification.getText().equals("Liked your post"))
-        {
-            holder.text.text = "Liked your post"
-        }
-        else if (notification.getText()!!.contains("Commented:"))
-        {
-            holder.text.text = notification.getText()!!.replace("Commented:", "Commented: ")
-        }
-        else
-        {
-            holder.text.text = notification.getText()
+            notification.getText().equals(mContext.getString(R.string.NOTIFICATION_ADAPTER_START_FOLLOWING)) ->
+            {
+                holder.text.text = mContext.getString(R.string.NOTIFICATION_ADAPTER_START_FOLLOWING)
+            }
+            
+            notification.getText().equals(mContext.getString(R.string.NOTIFICATION_ADAPTER_LIKED_POST)) ->
+            {
+                holder.text.text = mContext.getString(R.string.NOTIFICATION_ADAPTER_LIKED_POST)
+            }
+            
+            notification.getText()!!.contains(mContext.getString(R.string.NOTIFICATION_ADAPTER_COMMENTED)) ->
+            {
+                holder.text.text = notification.getText()!!.replace(mContext.getString(R.string.NOTIFICATION_ADAPTER_COMMENTED), mContext.getString(R.string.NOTIFICATION_ADAPTER_COMMENTED))
+            }
+            else -> {
+                holder.text.text = notification.getText()
+            }
         }
 
         userInfo(holder.profileImage, holder.userName, notification.getUserId()!!)

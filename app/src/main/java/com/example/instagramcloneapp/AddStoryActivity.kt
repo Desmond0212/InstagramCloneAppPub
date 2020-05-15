@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.android.gms.tasks.Continuation
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -18,7 +17,6 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
 import com.theartofdev.edmodo.cropper.CropImage
-import kotlinx.android.synthetic.main.activity_add_post.*
 
 class AddStoryActivity : AppCompatActivity()
 {
@@ -74,12 +72,12 @@ class AddStoryActivity : AppCompatActivity()
                     if (!task.isSuccessful)
                     {
                         task.exception?.let {
-                            throw it
                             progressDialog.dismiss()
+                            throw it
                         }
                     }
                     return@Continuation fileRef.downloadUrl
-                }).addOnCompleteListener (OnCompleteListener<Uri> { task ->
+                }).addOnCompleteListener { task ->
                     if (task.isSuccessful)
                     {
                         val downloadUrl = task.result
@@ -100,8 +98,7 @@ class AddStoryActivity : AppCompatActivity()
 
                         ref.child(storyId).updateChildren(storyMap)
 
-                        Toast.makeText(this, "Story has been uploaded successfully.", Toast.LENGTH_LONG)
-                            .show()
+                        Toast.makeText(this, "Story has been uploaded successfully.", Toast.LENGTH_LONG).show()
 
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
@@ -112,7 +109,7 @@ class AddStoryActivity : AppCompatActivity()
                     {
                         progressDialog.dismiss()
                     }
-                })
+                }
             }
         }
     }

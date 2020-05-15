@@ -19,14 +19,14 @@ import kotlinx.android.synthetic.main.activity_story.*
 
 class StoryActivity : AppCompatActivity(), StoriesProgressView.StoriesListener
 {
-    var currentUserId: String = ""
-    var userId: String? = ""
+    private var currentUserId: String = ""
+    private var userId: String? = ""
+    private var pressTime = 0L
+    private var limit = 500L
     var imageList: List<String>? = null
     var storyIdsList: List<String>? = null
     var storiesProgressView: StoriesProgressView? = null
     var counter = 0
-    var pressTime = 0L
-    var limit = 500L
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -81,7 +81,7 @@ class StoryActivity : AppCompatActivity(), StoriesProgressView.StoriesListener
         }
     }
 
-    private val onTouchListener = View.OnTouchListener { view, motionEvent ->
+    private val onTouchListener = View.OnTouchListener { _, motionEvent ->
 
         when (motionEvent.action)
         {
@@ -117,7 +117,7 @@ class StoryActivity : AppCompatActivity(), StoriesProgressView.StoriesListener
         {
             override fun onDataChange(p0: DataSnapshot)
             {
-                seen_number.text = "" + p0.childrenCount
+                seen_number.text = getString(R.string.STORY_ACTIVITY_LBL_SEEN_NUMBER, p0.childrenCount.toString())
             }
 
             override fun onCancelled(p0: DatabaseError) {}
@@ -145,7 +145,7 @@ class StoryActivity : AppCompatActivity(), StoriesProgressView.StoriesListener
             {
                 if (p0.exists())
                 {
-                    val user = p0.getValue<UserModel>(UserModel::class.java)
+                    val user = p0.getValue(UserModel::class.java)
 
                     Picasso.get().load(user!!.getImage()).placeholder(R.drawable.profile).into(story_profile_image)
 
@@ -174,7 +174,7 @@ class StoryActivity : AppCompatActivity(), StoriesProgressView.StoriesListener
 
                 for (snapshot in p0.children)
                 {
-                    val story: StoryModel? = snapshot.getValue<StoryModel>(StoryModel::class.java)
+                    val story: StoryModel? = snapshot.getValue(StoryModel::class.java)
                     val timeCurrent = System.currentTimeMillis()
 
                     if (timeCurrent > story?.getTimeStart()!! && timeCurrent < story.getTimeEnd()!!)
@@ -188,10 +188,10 @@ class StoryActivity : AppCompatActivity(), StoriesProgressView.StoriesListener
                 storiesProgressView?.setStoryDuration(6000L)
                 storiesProgressView?.setStoriesListener(this@StoryActivity)
                 storiesProgressView?.startStories(counter)
-                Picasso.get().load(imageList?.get(counter)).placeholder(R.drawable.profile).into(image_story)
+                Picasso.get().load(imageList?.get(counter)).placeholder(R.color.blackColor).into(image_story)
 
-                addViewToStory(storyIdsList!!.get(counter))
-                seenNumber(storyIdsList!!.get(counter))
+                addViewToStory(storyIdsList!![counter])
+                seenNumber(storyIdsList!![counter])
             }
 
             override fun onCancelled(p0: DatabaseError) {}
@@ -207,13 +207,13 @@ class StoryActivity : AppCompatActivity(), StoriesProgressView.StoriesListener
     override fun onPrev()
     {
         if (counter - 1 < 0) return
-        Picasso.get().load(imageList!![--counter]).placeholder(R.drawable.profile).into(image_story)
+        Picasso.get().load(imageList!![--counter]).placeholder(R.color.blackColor).into(image_story)
         seenNumber(storyIdsList!![counter])
     }
 
     override fun onNext()
     {
-        Picasso.get().load(imageList!![++counter]).placeholder(R.drawable.profile).into(image_story)
+        Picasso.get().load(imageList!![++counter]).placeholder(R.color.blackColor).into(image_story)
         addViewToStory(storyIdsList!![counter])
         seenNumber(storyIdsList!![counter])
     }

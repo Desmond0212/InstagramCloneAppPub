@@ -73,9 +73,7 @@ class CommentsAdapter (private val mContext: Context, private val mComment: Muta
                 }
             }
 
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("Not yet implemented")
-            }
+            override fun onCancelled(p0: DatabaseError) {}
         })
     }
 }

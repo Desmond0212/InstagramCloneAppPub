@@ -11,14 +11,12 @@ import com.example.instagramcloneapp.Adapter.PostAdapter
 import com.example.instagramcloneapp.Adapter.StoryAdapter
 import com.example.instagramcloneapp.Model.PostModel
 import com.example.instagramcloneapp.Model.StoryModel
-
 import com.example.instagramcloneapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 /**
@@ -38,7 +36,7 @@ class HomeFragment : Fragment()
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         //Recycler View Home
-        var recyclerView: RecyclerView? = null
+        val recyclerView: RecyclerView?
         recyclerView = view.findViewById(R.id.recycler_view_home)
         val linearLayoutManager = LinearLayoutManager(context)
         linearLayoutManager.reverseLayout = true
@@ -51,7 +49,7 @@ class HomeFragment : Fragment()
         recyclerView.setHasFixedSize(true)
 
         //Recycler View Story
-        var recyclerViewStory: RecyclerView? = null
+        val recyclerViewStory: RecyclerView?
         recyclerViewStory = view.findViewById(R.id.recycler_view_story)
         val linearLayoutManager2 = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false) // To set scroll with Horizontal
         recyclerViewStory.layoutManager = linearLayoutManager2

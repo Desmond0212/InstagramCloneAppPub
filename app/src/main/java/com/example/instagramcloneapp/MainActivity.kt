@@ -2,14 +2,9 @@ package com.example.instagramcloneapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.instagramcloneapp.Fragments.HomeFragment
 import com.example.instagramcloneapp.Fragments.NotificationFragment
 import com.example.instagramcloneapp.Fragments.ProfileFragment

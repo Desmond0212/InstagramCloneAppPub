@@ -6,7 +6,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.widget.Toast
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.OnCompleteListener
@@ -18,7 +17,6 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
 import com.theartofdev.edmodo.cropper.CropImage
-import kotlinx.android.synthetic.main.activity_account_settings.*
 import kotlinx.android.synthetic.main.activity_add_post.*
 
 class AddPostActivity : AppCompatActivity()
@@ -79,12 +77,12 @@ class AddPostActivity : AppCompatActivity()
                     if (!task.isSuccessful)
                     {
                         task.exception?.let {
-                            throw it
                             progressDialog.dismiss()
+                            throw it
                         }
                     }
                     return@Continuation fileRef.downloadUrl
-                }).addOnCompleteListener (OnCompleteListener<Uri> { task ->
+                }).addOnCompleteListener { task ->
                     if (task.isSuccessful)
                     {
                         val downloadUrl = task.result
@@ -113,7 +111,7 @@ class AddPostActivity : AppCompatActivity()
                     {
                         progressDialog.dismiss()
                     }
-                })
+                }
             }
         }
     }

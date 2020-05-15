@@ -200,7 +200,7 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
             {
                 if (p0.exists())
                 {
-                    likes.text = p0.childrenCount.toString() + " likes"
+                    likes.text = mContext.getString(R.string.POST_ADAPTER_NUMBER_OF_LIKES, p0.childrenCount.toString())
                 }
             }
 
@@ -218,7 +218,14 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
             {
                 if (p0.exists())
                 {
-                    comments.text = "view all " + p0.childrenCount.toString() + " comments"
+                    if (p0.childrenCount.toInt() == 1)
+                    {
+                        comments.text = mContext.getString(R.string.POST_ADAPTER_TOTAL_COMMENT, p0.childrenCount.toString())
+                    }
+                    else
+                    {
+                        comments.text = mContext.getString(R.string.POST_ADAPTER_TOTAL_COMMENTS, p0.childrenCount.toString())
+                    }
                 }
             }
 
@@ -226,10 +233,10 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
         })
     }
 
-    private fun isLikes(postid: String?, likeButton: ImageView)
+    private fun isLikes(postId: String?, likeButton: ImageView)
     {
         val firebaseUser = FirebaseAuth.getInstance().currentUser
-        val likesRef = FirebaseDatabase.getInstance().reference.child("Likes").child(postid!!)
+        val likesRef = FirebaseDatabase.getInstance().reference.child("Likes").child(postId!!)
 
         likesRef.addValueEventListener(object : ValueEventListener
         {
@@ -300,14 +307,14 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
 
     private fun addNotification(userId: String, postId: String)
     {
-        val notifRef = FirebaseDatabase.getInstance().reference.child("Notifications").child(userId)
-        val notifMap = HashMap<String, Any>()
+        val notificationRef = FirebaseDatabase.getInstance().reference.child("Notifications").child(userId)
+        val notificationMap = HashMap<String, Any>()
 
-        notifMap["userid"] = firebaseUser!!.uid
-        notifMap["text"] = "Liked your post"
-        notifMap["postid"] = postId
-        notifMap["ispost"] = true
+        notificationMap["userid"] = firebaseUser!!.uid
+        notificationMap["text"] = "Liked your post"
+        notificationMap["postid"] = postId
+        notificationMap["ispost"] = true
 
-        notifRef.push().setValue(notifMap)
+        notificationRef.push().setValue(notificationMap)
     }
 }

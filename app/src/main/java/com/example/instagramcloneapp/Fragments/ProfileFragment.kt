@@ -26,8 +26,8 @@ import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
-import kotlinx.android.synthetic.main.fragment_profile.view.total_posts
 import java.util.*
+import java.util.Collections.reverse
 import kotlin.collections.ArrayList
 
 /**
@@ -58,7 +58,7 @@ class ProfileFragment : Fragment()
 
         if (profileId == firebaseUser.uid)
         {
-            view.edit_account_settings_btn.text = "Edit Profile"
+            view.edit_account_settings_btn.text = getString(R.string.PROFILE_FRAGMENT_LBL_EDIT_PROFILE)
         }
         else if (profileId != firebaseUser.uid)
         {
@@ -129,47 +129,46 @@ class ProfileFragment : Fragment()
         }
 
         view.edit_account_settings_btn.setOnClickListener{
-            val getButtonText = view.edit_account_settings_btn.text.toString()
 
-            when
+            when (view.edit_account_settings_btn.text.toString())
             {
-                getButtonText == "Edit Profile" ->
+                "Edit Profile" ->
                 {
                     startActivity(Intent(context, AccountSettingsActivity::class.java))
                 }
 
-                getButtonText == "Follow" ->
+                "Follow" ->
                 {
-                    firebaseUser.uid.let { it ->
+                    firebaseUser.uid.let {
                         FirebaseDatabase.getInstance().reference
-                            .child("Follow").child(it.toString())
+                            .child("Follow").child(it)
                             .child("Following").child(profileId)
                             .setValue(true)
                     }
 
-                    firebaseUser.uid.let { it ->
+                    firebaseUser.uid.let {
                         FirebaseDatabase.getInstance().reference
                             .child("Follow").child(profileId)
-                            .child("Followers").child(it.toString())
+                            .child("Followers").child(it)
                             .setValue(true)
                     }
 
                     addNotification()
                 }
 
-                getButtonText == "Following" ->
+                "Following" ->
                 {
-                    firebaseUser.uid.let { it ->
+                    firebaseUser.uid.let {
                         FirebaseDatabase.getInstance().reference
-                            .child("Follow").child(it.toString())
+                            .child("Follow").child(it)
                             .child("Following").child(profileId)
                             .removeValue()
                     }
 
-                    firebaseUser.uid.let { it ->
+                    firebaseUser.uid.let {
                         FirebaseDatabase.getInstance().reference
                             .child("Follow").child(profileId)
-                            .child("Followers").child(it.toString())
+                            .child("Followers").child(it)
                             .removeValue()
                     }
                 }
@@ -215,9 +214,9 @@ class ProfileFragment : Fragment()
 
     private fun checkFollowAndFollowingButtonStatus()
     {
-        val followingRef = firebaseUser.uid.let { it ->
+        val followingRef = firebaseUser.uid.let {
             FirebaseDatabase.getInstance().reference
-                .child("Follow").child(it.toString())
+                .child("Follow").child(it)
                 .child("Following")
         }
 
@@ -227,11 +226,11 @@ class ProfileFragment : Fragment()
             {
                 if (p0.child(profileId).exists())
                 {
-                    view?.edit_account_settings_btn?.text = "Following"
+                    view?.edit_account_settings_btn?.text = getString(R.string.PROFILE_FRAGMENT_LBL_FOLLOWING)
                 }
                 else
                 {
-                    view?.edit_account_settings_btn?.text = "Follow"
+                    view?.edit_account_settings_btn?.text = getString(R.string.PROFILE_FRAGMENT_LBL_FOLLOW)
                 }
             }
 
@@ -296,7 +295,7 @@ class ProfileFragment : Fragment()
             {
                 if (p0.exists())
                 {
-                    val user = p0.getValue<UserModel>(UserModel::class.java)
+                    val user = p0.getValue(UserModel::class.java)
 
                     Picasso.get().load(user?.getImage()).placeholder(R.drawable.profile).into(view?.pro_image_profile_frag)
                     view?.profile_fragment_username?.text = user?.getUsername()
@@ -330,7 +329,7 @@ class ProfileFragment : Fragment()
                             (postList as ArrayList<PostModel>).add(post!!)
                         }
 
-                        Collections.reverse(postList)
+                        reverse(postList)
                         myImagesAdapter?.notifyDataSetChanged()
                     }
                 }
@@ -430,14 +429,14 @@ class ProfileFragment : Fragment()
 
     private fun addNotification()
     {
-        val notifRef = FirebaseDatabase.getInstance().reference.child("Notifications").child(profileId)
-        val notifMap = HashMap<String, Any>()
+        val notificationRef = FirebaseDatabase.getInstance().reference.child("Notifications").child(profileId)
+        val notificationMap = HashMap<String, Any>()
 
-        notifMap["userid"] = firebaseUser!!.uid
-        notifMap["text"] = "Started following you"
-        notifMap["postid"] = ""
-        notifMap["ispost"] = false
+        notificationMap["userid"] = firebaseUser.uid
+        notificationMap["text"] = "Started following you"
+        notificationMap["postid"] = ""
+        notificationMap["ispost"] = false
 
-        notifRef.push().setValue(notifMap)
+        notificationRef.push().setValue(notificationMap)
     }
 }

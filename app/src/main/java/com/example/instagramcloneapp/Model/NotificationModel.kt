@@ -1,13 +1,15 @@
 package com.example.instagramcloneapp.Model
 
-public class NotificationModel {
+class NotificationModel
+{
     private var userid: String? = null
     private var text: String? = null
     private var postid: String? = null
     private var ispost = false
 
     constructor()
-    constructor(userid: String?, text: String?, postid: String?, ispost: Boolean) {
+    constructor(userid: String?, text: String?, postid: String?, ispost: Boolean)
+    {
         this.userid = userid
         this.text = text
         this.postid = postid

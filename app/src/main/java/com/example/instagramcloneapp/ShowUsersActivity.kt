@@ -11,8 +11,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_profile.view.*
-import kotlinx.android.synthetic.main.fragment_search.view.*
 
 class ShowUsersActivity : AppCompatActivity()
 {
@@ -39,8 +37,7 @@ class ShowUsersActivity : AppCompatActivity()
             finish()
         }
 
-        val recyclerView: RecyclerView
-        recyclerView = findViewById(R.id.recycler_view)
+        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         userList = ArrayList()
@@ -63,7 +60,7 @@ class ShowUsersActivity : AppCompatActivity()
         val ref = FirebaseDatabase.getInstance().reference
             .child("Story")
             .child(id!!)
-            .child(intent.getStringExtra("storyid"))
+            .child(intent.getStringExtra("storyid")!!)
             .child("views")
 
         ref.addValueEventListener(object : ValueEventListener

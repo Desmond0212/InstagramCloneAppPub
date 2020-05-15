@@ -16,13 +16,12 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_account_settings.*
 import kotlinx.android.synthetic.main.activity_comments.*
 
 class CommentsActivity : AppCompatActivity()
 {
-    private var postId = ""
-    private var publisherId = ""
+    private var postId: String? = null
+    private var publisherId: String? = null
     private var firebaseUser: FirebaseUser? = null
     private var commentAdapter: CommentsAdapter? = null
     private var commentList: MutableList<CommentModel>? = null
@@ -49,7 +48,7 @@ class CommentsActivity : AppCompatActivity()
         readComments()
         getPostImage()
 
-        post_comment.setOnClickListener(View.OnClickListener {
+        post_comment.setOnClickListener{
             if (add_comment.text.toString() == "")
             {
                 Toast.makeText(this, "Please write your comment.", Toast.LENGTH_LONG).show()
@@ -58,7 +57,7 @@ class CommentsActivity : AppCompatActivity()
             {
                 addComment()
             }
-        })
+        }
     }
 
     private fun userInfo()
@@ -71,7 +70,7 @@ class CommentsActivity : AppCompatActivity()
             {
                 if (p0.exists())
                 {
-                    val user = p0.getValue<UserModel>(UserModel::class.java)
+                    val user = p0.getValue(UserModel::class.java)
 
                     Picasso.get().load(user!!.getImage()).placeholder(R.drawable.profile).into(profile_image_comment)
                 }
@@ -83,7 +82,7 @@ class CommentsActivity : AppCompatActivity()
 
     private fun addComment()
     {
-        val commentsRef = FirebaseDatabase.getInstance().reference.child("Comments").child(postId)
+        val commentsRef = FirebaseDatabase.getInstance().reference.child("Comments").child(postId!!)
         val commentsMap = HashMap<String, Any>()
         commentsMap["comment"] = add_comment.text.toString()
         commentsMap["publisher"] = firebaseUser!!.uid
@@ -98,7 +97,7 @@ class CommentsActivity : AppCompatActivity()
 
     private fun readComments()
     {
-        val commentsRef = FirebaseDatabase.getInstance().reference.child("Comments").child(postId)
+        val commentsRef = FirebaseDatabase.getInstance().reference.child("Comments").child(postId!!)
 
         commentsRef.addValueEventListener(object : ValueEventListener
         {
@@ -124,7 +123,7 @@ class CommentsActivity : AppCompatActivity()
 
     private fun getPostImage()
     {
-        val postRef = FirebaseDatabase.getInstance().reference.child("Posts").child(postId).child("postimage")
+        val postRef = FirebaseDatabase.getInstance().reference.child("Posts").child(postId!!).child("postimage")
 
         postRef.addValueEventListener(object : ValueEventListener
         {
@@ -144,12 +143,12 @@ class CommentsActivity : AppCompatActivity()
 
     private fun addNotification()
     {
-        val notifRef = FirebaseDatabase.getInstance().reference.child("Notifications").child(publisherId)
+        val notifRef = FirebaseDatabase.getInstance().reference.child("Notifications").child(publisherId!!)
         val notifMap = HashMap<String, Any>()
 
         notifMap["userid"] = firebaseUser!!.uid
         notifMap["text"] = "Commented: " + add_comment.text.toString()
-        notifMap["postid"] = postId
+        notifMap["postid"] = postId!!
         notifMap["ispost"] = true
 
         notifRef.push().setValue(notifMap)

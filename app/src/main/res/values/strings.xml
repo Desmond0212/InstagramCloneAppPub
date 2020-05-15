@@ -4,6 +4,30 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--Notification Adapter-->
+    <string name="NOTIFICATION_ADAPTER_START_FOLLOWING">Started following you</string>
+    <string name="NOTIFICATION_ADAPTER_LIKED_POST">Liked your post</string>
+    <string name="NOTIFICATION_ADAPTER_COMMENTED">Commented: </string>
+
+    <!--Post Adapter-->
+    <string name="POST_ADAPTER_NUMBER_OF_LIKES">%1$s likes</string>
+    <string name="POST_ADAPTER_TOTAL_COMMENTS">view all %1$s comments</string>
+    <string name="POST_ADAPTER_TOTAL_COMMENT">view all %1$s comment</string>
+
+    <!--Story Adapter-->
+    <string name="STORY_ADAPTER_MY_STORY">My Story</string>
+    <string name="STORY_ADAPTER_ADD_STORY">Add Story</string>
+
+    <!--User Adapter-->
+    <string name="USER_ADAPTER_TXT_FOLLOWING">Following</string>
+    <string name="USER_ADAPTER_TXT_FOLLOW">Follow</string>
+
+    <!--Profile Fragment-->
+    <string name="PROFILE_FRAGMENT_LBL_EDIT_PROFILE">Edit Profile</string>
+    <string name="PROFILE_FRAGMENT_LBL_FOLLOWING">Following</string>
+    <string name="PROFILE_FRAGMENT_LBL_FOLLOW">Follow</string>
+
+    <!--Story Activity-->
+    <string name="STORY_ACTIVITY_LBL_SEEN_NUMBER">%1$s</string>
+
 </resources>

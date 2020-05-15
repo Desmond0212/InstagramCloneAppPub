@@ -29,11 +29,11 @@ class UserAdapter (private var mContext: Context,
 {
     private var firebaseUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAdapter.ViewHolder
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
         val view = LayoutInflater.from(mContext).inflate(R.layout.user_item_layout, parent, false)
 
-        return UserAdapter.ViewHolder(view)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int
@@ -41,7 +41,7 @@ class UserAdapter (private var mContext: Context,
         return mUser.size
     }
 
-    override fun onBindViewHolder(holder: UserAdapter.ViewHolder, position: Int)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
         val user = mUser[position]
 
@@ -51,7 +51,7 @@ class UserAdapter (private var mContext: Context,
 
         checkFollowingStatus(user.getUID(), holder.followButton)
 
-        holder.itemView.setOnClickListener(View.OnClickListener {
+        holder.itemView.setOnClickListener {
             if (isFragment)
             {
                 val pref = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit()
@@ -66,7 +66,7 @@ class UserAdapter (private var mContext: Context,
                 intent.putExtra("publisherId", user.getUID())
                 mContext.startActivity(intent)
             }
-        })
+        }
 
         holder.followButton.setOnClickListener {
             if (holder.followButton.text.toString() == "Follow")
@@ -82,12 +82,7 @@ class UserAdapter (private var mContext: Context,
                                     FirebaseDatabase.getInstance().reference
                                         .child("Follow").child(user.getUID()!!)
                                         .child("Followers").child(it.toString())
-                                        .setValue(true).addOnCompleteListener { task ->
-                                            if (task.isSuccessful)
-                                            {
-
-                                            }
-                                        }
+                                        .setValue(true)
                                 }
                             }
                         }
@@ -109,12 +104,7 @@ class UserAdapter (private var mContext: Context,
                                     FirebaseDatabase.getInstance().reference
                                         .child("Follow").child(user.getUID()!!)
                                         .child("Followers").child(it.toString())
-                                        .removeValue().addOnCompleteListener { task ->
-                                            if (task.isSuccessful)
-                                            {
-
-                                            }
-                                        }
+                                        .removeValue()
                                 }
                             }
                         }
@@ -137,11 +127,11 @@ class UserAdapter (private var mContext: Context,
             {
                 if (p0.child(uid!!).exists())
                 {
-                    followButton.text = "Following"
+                    followButton.text = mContext.getString(R.string.USER_ADAPTER_TXT_FOLLOWING)
                 }
                 else
                 {
-                    followButton.text = "Follow"
+                    followButton.text = mContext.getString(R.string.USER_ADAPTER_TXT_FOLLOW)
                 }
             }
 
@@ -154,15 +144,15 @@ class UserAdapter (private var mContext: Context,
 
     private fun addNotification(userId: String)
     {
-        val notifRef = FirebaseDatabase.getInstance().reference.child("Notifications").child(userId)
-        val notifMap = HashMap<String, Any>()
+        val notificationRef = FirebaseDatabase.getInstance().reference.child("Notifications").child(userId)
+        val notificationMap = HashMap<String, Any>()
 
-        notifMap["userid"] = firebaseUser!!.uid
-        notifMap["text"] = "Started following you"
-        notifMap["postid"] = ""
-        notifMap["ispost"] = false
+        notificationMap["userid"] = firebaseUser!!.uid
+        notificationMap["text"] = "Started following you"
+        notificationMap["postid"] = ""
+        notificationMap["ispost"] = false
 
-        notifRef.push().setValue(notifMap)
+        notificationRef.push().setValue(notificationMap)
     }
 
     class ViewHolder (@NonNull itemView: View) : RecyclerView.ViewHolder(itemView)

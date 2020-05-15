@@ -5,25 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagramcloneapp.Adapter.NotificationAdapter
 import com.example.instagramcloneapp.Model.NotificationModel
-import com.example.instagramcloneapp.Model.PostModel
-import com.example.instagramcloneapp.Model.UserModel
-
 import com.example.instagramcloneapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_comments.*
-import kotlinx.android.synthetic.main.fragment_profile.view.*
-import java.util.*
+import java.util.Collections.reverse
 import kotlin.collections.ArrayList
 
 /**
@@ -55,9 +47,9 @@ class NotificationFragment : Fragment()
 
     private fun readNotifications()
     {
-        val notifRef = FirebaseDatabase.getInstance().reference.child("Notifications").child(FirebaseAuth.getInstance().currentUser!!.uid)
+        val notificationRef = FirebaseDatabase.getInstance().reference.child("Notifications").child(FirebaseAuth.getInstance().currentUser!!.uid)
 
-        notifRef.addValueEventListener(object : ValueEventListener
+        notificationRef.addValueEventListener(object : ValueEventListener
         {
             override fun onDataChange(p0: DataSnapshot) {
                 if (p0.exists())
@@ -71,7 +63,7 @@ class NotificationFragment : Fragment()
                         (notificationList as ArrayList<NotificationModel>).add(notification!!)
                     }
 
-                    Collections.reverse(notificationList)
+                    reverse(notificationList)
                     notificationAdapter!!.notifyDataSetChanged()
                 }
             }

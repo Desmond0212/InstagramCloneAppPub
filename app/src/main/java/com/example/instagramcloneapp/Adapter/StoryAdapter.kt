@@ -22,30 +22,29 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 class StoryAdapter(private val mContext: Context, private val mStory: List<StoryModel>) : RecyclerView.Adapter<StoryAdapter.ViewHolder>()
 {
     inner class ViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView)
     {
         //Story Layout
-        var story_image_seen: CircleImageView? = null
-        var story_image: CircleImageView? = null
-        var story_username: TextView? = null
+        var storyImageSeen: CircleImageView? = null
+        var storyImage: CircleImageView? = null
+        var storyUsername: TextView? = null
 
         //Add Story Layout
-        var story_plus_btn: ImageView? = null
-        var addStory_text: TextView? = null
+        var storyPlusBtn: ImageView? = null
+        var addStoryText: TextView? = null
 
         init {
             //Story Layout
-            story_image_seen = itemView.findViewById(R.id.story_image_seen)
-            story_image = itemView.findViewById(R.id.story_image)
-            story_username = itemView.findViewById(R.id.story_username)
+            storyImageSeen = itemView.findViewById(R.id.story_image_seen)
+            storyImage = itemView.findViewById(R.id.story_image)
+            storyUsername = itemView.findViewById(R.id.story_username)
 
             //Add Story Layout
-            story_plus_btn = itemView.findViewById(R.id.story_add)
-            addStory_text = itemView.findViewById(R.id.add_story_text)
+            storyPlusBtn = itemView.findViewById(R.id.story_add)
+            addStoryText = itemView.findViewById(R.id.add_story_text)
         }
     }
 
@@ -91,13 +90,13 @@ class StoryAdapter(private val mContext: Context, private val mStory: List<Story
 
         if (holder.adapterPosition == 0)
         {
-            myStories(holder.addStory_text!!, holder.story_plus_btn!!, false)
+            myStories(holder.addStoryText!!, holder.storyPlusBtn!!, false)
         }
 
         holder.itemView.setOnClickListener {
             if (holder.adapterPosition == 0)
             {
-                myStories(holder.addStory_text!!, holder.story_plus_btn!!, true)
+                myStories(holder.addStoryText!!, holder.storyPlusBtn!!, true)
             }
             else
             {
@@ -118,14 +117,14 @@ class StoryAdapter(private val mContext: Context, private val mStory: List<Story
             {
                 if (p0.exists())
                 {
-                    val user = p0.getValue<UserModel>(UserModel::class.java)
+                    val user = p0.getValue(UserModel::class.java)
 
-                    Picasso.get().load(user!!.getImage()).placeholder(R.drawable.profile).into(viewHolder.story_image)
+                    Picasso.get().load(user!!.getImage()).placeholder(R.drawable.profile).into(viewHolder.storyImage)
 
                     if (position != 0)
                     {
-                        Picasso.get().load(user.getImage()).placeholder(R.drawable.profile).into(viewHolder.story_image_seen)
-                        viewHolder.story_username?.text = user.getUsername()
+                        Picasso.get().load(user.getImage()).placeholder(R.drawable.profile).into(viewHolder.storyImageSeen)
+                        viewHolder.storyUsername?.text = user.getUsername()
                     }
                 }
             }
@@ -155,13 +154,13 @@ class StoryAdapter(private val mContext: Context, private val mStory: List<Story
 
                 if (i > 0)
                 {
-                    viewHolder.story_image?.visibility = View.VISIBLE
-                    viewHolder.story_image_seen?.visibility = View.GONE
+                    viewHolder.storyImage?.visibility = View.VISIBLE
+                    viewHolder.storyImageSeen?.visibility = View.GONE
                 }
                 else
                 {
-                    viewHolder.story_image?.visibility = View.GONE
-                    viewHolder.story_image_seen?.visibility = View.VISIBLE
+                    viewHolder.storyImage?.visibility = View.GONE
+                    viewHolder.storyImageSeen?.visibility = View.VISIBLE
                 }
             }
 
@@ -198,7 +197,7 @@ class StoryAdapter(private val mContext: Context, private val mStory: List<Story
 
                         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "View Story")
                         {
-                            dialogInterface, which ->
+                                dialogInterface, _ ->
                             val intent = Intent(mContext, StoryActivity::class.java)
                             intent.putExtra("userId", FirebaseAuth.getInstance().currentUser?.uid)
                             mContext.startActivity(intent)
@@ -207,7 +206,7 @@ class StoryAdapter(private val mContext: Context, private val mStory: List<Story
 
                         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Add Story")
                         {
-                                dialogInterface, which ->
+                                dialogInterface, _ ->
                             val intent = Intent(mContext, AddStoryActivity::class.java)
                             intent.putExtra("userId", FirebaseAuth.getInstance().currentUser?.uid)
                             mContext.startActivity(intent)
@@ -227,12 +226,12 @@ class StoryAdapter(private val mContext: Context, private val mStory: List<Story
                 {
                     if (counter > 0)
                     {
-                        textView.text = "My Story"
+                        textView.text = mContext.getString(R.string.STORY_ADAPTER_MY_STORY)
                         imageView.visibility = View.GONE
                     }
                     else
                     {
-                        textView.text = "Add Story"
+                        textView.text = mContext.getString(R.string.STORY_ADAPTER_ADD_STORY)
                         imageView.visibility = View.VISIBLE
                     }
                 }

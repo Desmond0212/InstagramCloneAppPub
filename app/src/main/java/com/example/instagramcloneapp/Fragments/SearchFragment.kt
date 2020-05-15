@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagramcloneapp.Adapter.UserAdapter
 import com.example.instagramcloneapp.Model.UserModel
-
 import com.example.instagramcloneapp.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -67,7 +66,7 @@ class SearchFragment : Fragment()
 
     private fun retrieveUsers()
     {
-        val userRef = FirebaseDatabase.getInstance().getReference().child("Users")
+        val userRef = FirebaseDatabase.getInstance().reference.child("Users")
 
         userRef.addValueEventListener(object: ValueEventListener
         {
@@ -97,7 +96,7 @@ class SearchFragment : Fragment()
 
     private fun searchUser(input: String)
     {
-        val query = FirebaseDatabase.getInstance().getReference()
+        val query = FirebaseDatabase.getInstance().reference
             .child("Users")
             .orderByChild("fullname")
             .startAt(input)
