@@ -42,6 +42,7 @@
         android:id="@+id/notification_post_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@null"/>
 
 </RelativeLayout>

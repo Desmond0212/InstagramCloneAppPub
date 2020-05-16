@@ -26,7 +26,7 @@
             android:id="@+id/user_name_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="user name"
+            android:text="@string/COMMENTS_ITEM_LAYOUT_LBL_USERNAME"
             android:textSize="16sp"
             android:textStyle="bold"/>
 
@@ -34,7 +34,7 @@
             android:id="@+id/comment_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="comment text"
+            android:text="@string/COMMENTS_ITEM_LAYOUT_LBL_COMMENT"
             android:textSize="16sp"/>
 
     </LinearLayout>

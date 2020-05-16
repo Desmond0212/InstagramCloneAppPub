@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,7 +30,8 @@
                     android:layout_width="20dp"
                     android:layout_height="30dp"
                     android:layout_alignParentStart="true"
-                    android:src="@drawable/close"/>
+                    android:src="@drawable/close"
+                    android:contentDescription="@string/ACTIVITY_ACCOUNT_SETTING_IMG_CONTENT_DECS"/>
 
                 <ImageView
                     android:id="@+id/save_profile_btn"
@@ -39,7 +39,8 @@
                     android:layout_height="30dp"
                     android:layout_marginEnd="15dp"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/save_edited_info"/>
+                    android:src="@drawable/save_edited_info"
+                    android:contentDescription="@string/ACTIVITY_ACCOUNT_SETTING_IMG_CONTENT_DECS"/>
 
             </RelativeLayout>
 
@@ -60,7 +61,7 @@
         android:id="@+id/change_image_text_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change Image"
+        android:text= "@string/ACTIVITY_ACCOUNT_SETTING_LBL_CHANGE_IMAGE"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="6dp"
         android:textStyle="bold"
@@ -76,7 +77,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="16dp"
         android:inputType="text"
-        android:hint="Full Name"/>
+        android:hint="@string/ACTIVITY_ACCOUNT_SETTING_TXT_FULL_NAME"
+        android:autofillHints="@string/ACTIVITY_ACCOUNT_SETTING_TXT_FULL_NAME"/>
 
     <EditText
         android:id="@+id/username_profile_frag"
@@ -87,7 +89,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="16dp"
         android:inputType="text"
-        android:hint="Username"/>
+        android:hint="@string/ACTIVITY_ACCOUNT_SETTING_TXT_USERNAME"
+        android:autofillHints="@string/ACTIVITY_ACCOUNT_SETTING_TXT_USERNAME"/>
 
     <EditText
         android:id="@+id/bio_profile_frag"
@@ -98,7 +101,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="16dp"
         android:inputType="text"
-        android:hint="Bio"/>
+        android:hint="@string/ACTIVITY_ACCOUNT_SETTING_TXT_BIO"
+        android:autofillHints="@string/ACTIVITY_ACCOUNT_SETTING_TXT_BIO"/>
 
     <Button
         android:id="@+id/logout_btn"
@@ -109,7 +113,7 @@
         android:layout_marginBottom="6dp"
         android:layout_above="@+id/delete_account_btn"
         android:background="@drawable/button_black_background"
-        android:text="Logout"
+        android:text="@string/ACTIVITY_ACCOUNT_SETTING_BTN_LOGOUT"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp"/>
@@ -121,7 +125,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="6dp"
-        android:text="Delete Account"
+        android:text="@string/ACTIVITY_ACCOUNT_SETTING_BTN_DELETE_ACC"
         android:textAllCaps="false"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"

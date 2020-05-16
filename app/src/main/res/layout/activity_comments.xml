@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,7 +28,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Comments"
+                    android:text="@string/ACTIVITY_COMMENTS_LBL_TITLE"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorBlack"
@@ -47,7 +46,8 @@
         android:layout_height="200dp"
         android:scaleType="centerCrop"
         android:src="@drawable/profile"
-        android:layout_below="@+id/app_bar_layout_comments"/>
+        android:layout_below="@+id/app_bar_layout_comments"
+        android:contentDescription="@string/ACTIVITY_COMMENTS_IMG_CONTENT"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_comments"
@@ -80,13 +80,15 @@
             android:id="@+id/add_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/profile_image_comment"
-            android:layout_toLeftOf="@+id/post_comment"
-            android:hint="write your comment....."
+            android:layout_toEndOf="@+id/profile_image_comment"
+            android:layout_toStartOf="@+id/post_comment"
+            android:hint="@string/ACTIVITY_COMMENTS_TXT_WRITE_COMMENT"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <TextView
             android:id="@+id/post_comment"
@@ -94,7 +96,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
-            android:text="Publish"
+            android:text="@string/ACTIVITY_COMMENTS_BTN_PUBLISH"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:textSize="18sp"

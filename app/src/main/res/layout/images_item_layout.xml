@@ -11,7 +11,8 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:src="@drawable/profile"
-        android:scaleType="centerCrop">
+        android:scaleType="centerCrop"
+        android:contentDescription="@null">
 
     </ImageView>
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
@@ -11,7 +12,8 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        tools:ignore="UselessParent">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_profile_image_search"
@@ -26,9 +28,9 @@
             android:id="@+id/user_name_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="user name"
+            android:text="@string/USER_ITEM_LAYOUT_USERNAME"
             android:gravity="center"
-            android:textSize="12dp"
+            android:textSize="12sp"
             android:layout_marginTop="5dp"
             android:textColor="@color/colorPrimary"
             android:layout_below="@+id/user_profile_image_search"/>
@@ -37,9 +39,9 @@
             android:id="@+id/user_full_name_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="user profile name"
+            android:text="@string/USER_ITEM_LAYOUT_PROFILE_NAME"
             android:gravity="center"
-            android:textSize="12dp"
+            android:textSize="12sp"
             android:layout_marginTop="2dp"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
@@ -52,7 +54,7 @@
             android:layout_below="@+id/user_full_name_search"
             android:layout_centerHorizontal="true"
             android:background="@drawable/button_black_background"
-            android:text="Follow"
+            android:text="@string/USER_ITEM_LAYOUT_BTN_FOLLOW"
             android:textAllCaps="false"
             android:layout_margin="10dp"/>
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,7 +30,8 @@
                     android:layout_width="20dp"
                     android:layout_height="30dp"
                     android:layout_alignParentStart="true"
-                    android:src="@drawable/close"/>
+                    android:src="@drawable/close"
+                    android:contentDescription="@string/ACTIVITY_ADD_POST_IMG_CONTENT_DESC"/>
 
                 <ImageView
                     android:id="@+id/save_new_post_btn"
@@ -39,7 +39,8 @@
                     android:layout_height="30dp"
                     android:layout_marginEnd="15dp"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/save_edited_info"/>
+                    android:src="@drawable/save_edited_info"
+                    android:contentDescription="@string/ACTIVITY_ADD_POST_IMG_CONTENT_DESC"/>
 
             </RelativeLayout>
 
@@ -59,7 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/add_image_icon"/>
+            android:src="@drawable/add_image_icon"
+            android:contentDescription="@string/ACTIVITY_ADD_POST_IMG_CONTENT_DESC"/>
 
         <EditText
             android:id="@+id/description_post"
@@ -67,7 +69,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:maxLines="6"
-            android:hint="Say something about your post"/>
+            android:hint="@string/ACTIVITY_ADD_POST_TXT_POST_DESC"
+            android:autofillHints="@string/ACTIVITY_ADD_POST_TXT_POST_DESC"
+            android:inputType="text"/>
 
     </LinearLayout>
 

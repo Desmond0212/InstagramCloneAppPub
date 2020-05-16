@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +14,8 @@
         android:src="@drawable/instagram"
         android:tint="@android:color/white"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"/>
+        android:layout_marginTop="180dp"
+        android:contentDescription="@string/ACTIVITY_SING_IN_IMG_CONTENT"/>
 
     <EditText
         android:id="@+id/email_login"
@@ -28,7 +28,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="6dp"
         android:inputType="textEmailAddress"
-        android:hint="Email"/>
+        android:hint="@string/ACTIVITY_SING_IN_TXT_EMAIL"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/password_login"
@@ -41,7 +42,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="6dp"
         android:inputType="textPassword"
-        android:hint="Password"/>
+        android:hint="@string/ACTIVITY_SING_IN_TXT_PASSWORD"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/login_btn"
@@ -51,7 +53,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="6dp"
-        android:text="Login"
+        android:text="@string/ACTIVITY_SING_IN_BTN_LOGIN"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
         android:textSize="17sp"/>
@@ -65,7 +67,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         android:background="@color/colorPrimary"
-        android:text="Need New Account? Sign Up"
+        android:text="@string/ACTIVITY_SING_IN_BTN_NEW_ACC"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="17sp"/>

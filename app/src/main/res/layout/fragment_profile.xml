@@ -29,12 +29,13 @@
                     android:id="@+id/profile_fragment_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="username"
+                    android:text="@string/FRAGMENT_PROFILE_LBL_USERNAME"
                     android:textSize="18sp"
                     android:maxLines="1"
                     android:textStyle="bold"
                     android:textColor="@android:color/black"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    tools:ignore="RelativeOverlap" />
 
                 <ImageView
                     android:id="@+id/options_view"
@@ -42,7 +43,8 @@
                     android:layout_height="30dp"
                     android:src="@drawable/options"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"/>
 
             </RelativeLayout>
 
@@ -58,7 +60,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:id="@+id/top_bar"
@@ -96,7 +99,7 @@
                                 android:id="@+id/total_posts"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0"
+                                android:text="@string/FRAGMENT_PROFILE_LBL_TOTAL_POST_VALUE"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 android:textColor="@android:color/black"/>
@@ -104,7 +107,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Posts"
+                                android:text="@string/FRAGMENT_PROFILE_LBL_TOTAL_POST_TITLE"
                                 android:textSize="12sp"
                                 android:textColor="@android:color/black"/>
 
@@ -122,7 +125,7 @@
                                 android:id="@+id/total_followers"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0"
+                                android:text="@string/FRAGMENT_PROFILE_LBL_TOTAL_FOLLOWER_VALUE"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 android:textColor="@android:color/black"/>
@@ -130,7 +133,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Followers"
+                                android:text="@string/FRAGMENT_PROFILE_LBL_TOTAL_FOLLOWER_TITLE"
                                 android:textSize="12sp"
                                 android:textColor="@android:color/black"/>
 
@@ -148,7 +151,7 @@
                                 android:id="@+id/total_following"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0"
+                                android:text="@string/FRAGMENT_PROFILE_LBL_TOTAL_FOLLOWING_VALUE"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 android:textColor="@android:color/black"/>
@@ -156,7 +159,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Following"
+                                android:text="@string/FRAGMENT_PROFILE_LBL_TOTAL_FOLLOWING_TITLE"
                                 android:textSize="12sp"
                                 android:textColor="@android:color/black"/>
 
@@ -168,7 +171,7 @@
                         android:id="@+id/edit_account_settings_btn"
                         android:layout_width="170dp"
                         android:layout_height="32dp"
-                        android:text="Edit Profile"
+                        android:text="@string/FRAGMENT_PROFILE_BTN_EDIT_PROFILE"
                         android:textAllCaps="false"
                         android:layout_marginTop="2dp"
                         android:layout_marginStart="10dp"
@@ -189,7 +192,7 @@
                     android:id="@+id/full_name_profile_frag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Full Name"
+                    android:text="@string/FRAGMENT_PROFILE_LBL_FULL_NAME"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black"/>
@@ -198,7 +201,7 @@
                     android:id="@+id/bio_profile_frag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bio"
+                    android:text="@string/FRAGMENT_PROFILE_LBL_BIO"
                     android:textSize="13sp"
                     android:textColor="@android:color/black"/>
 
@@ -219,7 +222,8 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/grid"
                     android:layout_weight="1"
-                    style="?android:attr/buttonBarButtonStyle"/>
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:contentDescription="@null" />
 
                 <ImageButton
                     android:id="@+id/images_save_btn"
@@ -228,7 +232,8 @@
                     android:src="@drawable/save_large_icon"
                     android:layout_weight="1"
                     android:scaleType="fitCenter"
-                    style="?android:attr/buttonBarButtonStyle"/>
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:contentDescription="@null"/>
 
             </LinearLayout>
             

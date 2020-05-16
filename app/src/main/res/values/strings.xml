@@ -30,4 +30,88 @@
     <!--Story Activity-->
     <string name="STORY_ACTIVITY_LBL_SEEN_NUMBER">%1$s</string>
 
+    <!--Activity Account Setting-->
+    <string name="ACTIVITY_ACCOUNT_SETTING_LBL_CHANGE_IMAGE">Change Image</string>
+    <string name="ACTIVITY_ACCOUNT_SETTING_TXT_FULL_NAME">Full Name</string>
+    <string name="ACTIVITY_ACCOUNT_SETTING_TXT_USERNAME">Username</string>
+    <string name="ACTIVITY_ACCOUNT_SETTING_TXT_BIO">Buo</string>
+    <string name="ACTIVITY_ACCOUNT_SETTING_BTN_LOGOUT">Logout</string>
+    <string name="ACTIVITY_ACCOUNT_SETTING_BTN_DELETE_ACC">Delete Account</string>
+    <string name="ACTIVITY_ACCOUNT_SETTING_IMG_CONTENT_DECS">null</string>
+
+    <!--Activity Add Post-->
+    <string name="ACTIVITY_ADD_POST_IMG_CONTENT_DESC">null</string>
+    <string name="ACTIVITY_ADD_POST_TXT_POST_DESC">Say something about your post</string>
+
+    <!--Activity Comments-->
+    <string name="ACTIVITY_COMMENTS_LBL_TITLE">Comments</string>
+    <string name="ACTIVITY_COMMENTS_TXT_WRITE_COMMENT">write your comment.....</string>
+    <string name="ACTIVITY_COMMENTS_BTN_PUBLISH">Publish</string>
+    <string name="ACTIVITY_COMMENTS_IMG_CONTENT">null</string>
+
+    <!--Activity Sing In-->
+    <string name="ACTIVITY_SING_IN_IMG_CONTENT">null</string>
+    <string name="ACTIVITY_SING_IN_TXT_EMAIL">Email</string>
+    <string name="ACTIVITY_SING_IN_TXT_PASSWORD">Password</string>
+    <string name="ACTIVITY_SING_IN_BTN_LOGIN">Login</string>
+    <string name="ACTIVITY_SING_IN_BTN_NEW_ACC">Need New Account? Sign Up</string>
+
+    <!--Activity Sing Up-->
+    <string name="ACTIVITY_SING_UP_IMG_CONTENT">null</string>
+    <string name="ACTIVITY_SING_UP_TXT_FULL_NAME">Full Name</string>
+    <string name="ACTIVITY_SING_UP_TXT_USERNAME">Username</string>
+    <string name="ACTIVITY_SING_UP_TXT_EMAIL">Email</string>
+    <string name="ACTIVITY_SING_UP_TXT_PASSWORD">Password</string>
+    <string name="ACTIVITY_SING_UP_BTN_REGISTER">Register</string>
+    <string name="ACTIVITY_SING_UP_BTN_HAVE_ACC">Already Have An Account? Sign In</string>
+
+    <!--Activity Story-->
+    <string name="ACTIVITY_STORY_IMG_CONTENT">null</string>
+    <string name="ACTIVITY_STORY_TXT_USERNAME">username</string>
+    <string name="ACTIVITY_STORY_TXT_SEEN_BY">Seen by</string>
+    <string name="ACTIVITY_STORY_TXT_SEEN_NUM">0</string>
+    <string name="ACTIVITY_STORY_BTN_DELETE">Delete</string>
+
+    <!--Add Story Layout-->
+    <string name="ADD_STORY_LAYOUT_LBL_ADD_STORY">Add Story</string>
+
+    <!--Comments Item Layout-->
+    <string name="COMMENTS_ITEM_LAYOUT_LBL_USERNAME">Username</string>
+    <string name="COMMENTS_ITEM_LAYOUT_LBL_COMMENT">Comment Text</string>
+
+    <!--Fragment Home-->
+    <string name="FRAGMENT_HOME_EMPTY_POST_MSG">You don\'t have any post yet. \nStart upload your picture.</string>
+
+    <!--Fragment Notifications-->
+    <string name="FRAGMENT_NOTIFICATION_TITLE">Notifications</string>
+
+    <!--Fragment Post Detail-->
+    <string name="FRAGMENT_POST_DETAIL_TITLE">Photo</string>
+
+    <!--Fragment Profile-->
+    <string name="FRAGMENT_PROFILE_LBL_USERNAME">username</string>
+    <string name="FRAGMENT_PROFILE_LBL_TOTAL_POST_TITLE">Posts</string>
+    <string name="FRAGMENT_PROFILE_LBL_TOTAL_POST_VALUE">0</string>
+    <string name="FRAGMENT_PROFILE_LBL_TOTAL_FOLLOWER_TITLE">Followers</string>
+    <string name="FRAGMENT_PROFILE_LBL_TOTAL_FOLLOWER_VALUE">0</string>
+    <string name="FRAGMENT_PROFILE_LBL_TOTAL_FOLLOWING_TITLE">Following</string>
+    <string name="FRAGMENT_PROFILE_LBL_TOTAL_FOLLOWING_VALUE">0</string>
+    <string name="FRAGMENT_PROFILE_BTN_EDIT_PROFILE">Edit Profile</string>
+    <string name="FRAGMENT_PROFILE_LBL_FULL_NAME">Full Name</string>
+    <string name="FRAGMENT_PROFILE_LBL_BIO">Bio</string>
+
+    <!--Fragment Search-->
+    <string name="FRAGMENT_SEARCH_TXT_SEARCH">Search&#8230;&#8230;</string>
+
+    <!--Posts Layout-->
+    <string name="POST_LAYOUT_USERNAME_POST">Username</string>
+
+    <!--Story Layout-->
+    <string name="STORY_LAYOUT_USERNAME">Username</string>
+
+    <!--User Item Layout-->
+    <string name="USER_ITEM_LAYOUT_USERNAME">Username</string>
+    <string name="USER_ITEM_LAYOUT_PROFILE_NAME">Profile Name</string>
+    <string name="USER_ITEM_LAYOUT_BTN_FOLLOW">Follow</string>
+
 </resources>
