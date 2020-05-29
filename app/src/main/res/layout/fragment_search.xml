@@ -16,9 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="4dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:background="@drawable/button_black_background">
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="6dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -26,9 +25,10 @@
                 
                 <ImageView
                     android:id="@+id/search_fragment_icon"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_search_black_36"
+                    android:layout_marginTop="5dp"
                     android:contentDescription="@null"/>
 
                 <EditText
@@ -41,7 +41,9 @@
                     android:hint="@string/FRAGMENT_SEARCH_TXT_SEARCH"
                     android:layout_toEndOf="@+id/search_fragment_icon"
                     android:importantForAutofill="no"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/transparent"/>
 
             </RelativeLayout>
 
@@ -57,5 +59,75 @@
         android:visibility="gone">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <RelativeLayout
+        android:id="@+id/layout_empty_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:foregroundGravity="center"
+        android:layout_marginTop="150dp"
+        android:layout_below="@+id/app_bar_layout_search">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_search_icon_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_search_black_48"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:textSize="20sp"
+            android:text="@string/FRAGMENT_SEARCH_TXT_EMPTY_SEARCH_MESSAGE"
+            android:textColor="@color/grayColor"
+            android:layout_below="@+id/img_search_icon_empty"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_search_result_not_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:foregroundGravity="center"
+        android:layout_marginTop="150dp"
+        android:layout_below="@+id/app_bar_layout_search"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/img_empty_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_search_black_48"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/empty_result_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/FRAGMENT_SEARCH_TXT_EMPTY_RESULT_TITLE"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/blackColor"
+            android:layout_below="@+id/img_empty_search"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/FRAGMENT_SEARCH_TXT_EMPTY_RESULT_MESSAGE"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/grayColor"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_below="@+id/empty_result_title"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

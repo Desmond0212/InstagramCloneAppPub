@@ -3,10 +3,12 @@ package com.example.instagramcloneapp.Fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagramcloneapp.Adapter.UserAdapter
@@ -26,6 +28,8 @@ class SearchFragment : Fragment()
     private var recyclerView: RecyclerView? = null
     private var userAdapter: UserAdapter? = null
     private var mUser: MutableList<UserModel>? = null
+    private var resultNotFound: RelativeLayout? = null
+    private var emptySearch: RelativeLayout? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
@@ -38,6 +42,8 @@ class SearchFragment : Fragment()
         mUser = ArrayList()
         userAdapter = context?.let { UserAdapter(it, mUser as ArrayList<UserModel>, true)}
         recyclerView?.adapter = userAdapter
+        resultNotFound = view.findViewById(R.id.layout_search_result_not_found)
+        emptySearch = view.findViewById(R.id.layout_empty_search)
 
         view.search_edit_text.addTextChangedListener(object: TextWatcher
         {
@@ -54,6 +60,8 @@ class SearchFragment : Fragment()
                 else
                 {
                     recyclerView?.visibility = View.VISIBLE
+                    resultNotFound?.visibility = View.GONE
+                    emptySearch?.visibility = View.GONE
 
                     retrieveUsers()
                     searchUser(s.toString().toLowerCase())
@@ -104,6 +112,8 @@ class SearchFragment : Fragment()
 
         query.addValueEventListener(object: ValueEventListener
         {
+            var isUserExist: Boolean? = false
+
             override fun onDataChange(p0: DataSnapshot)
             {
                 mUser?.clear()
@@ -114,8 +124,16 @@ class SearchFragment : Fragment()
 
                     if (user != null)
                     {
+                        isUserExist = true
                         mUser?.add(user)
                     }
+                }
+
+                if (isUserExist == false)
+                {
+                    recyclerView?.visibility = View.GONE
+                    resultNotFound?.visibility = View.VISIBLE
+                    emptySearch?.visibility = View.GONE
                 }
 
                 userAdapter?.notifyDataSetChanged()

@@ -33,8 +33,7 @@
             android:id="@+id/comment_notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimaryDark"/>
 
     </LinearLayout>
 
@@ -42,7 +41,8 @@
         android:id="@+id/notification_post_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_alignParentEnd="true"
-        android:contentDescription="@null"/>
+        android:contentDescription="@null"
+        android:background="@drawable/rounded_corner"
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>

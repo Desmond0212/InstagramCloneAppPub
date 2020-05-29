@@ -57,16 +57,16 @@
 
             <ImageView
                 android:id="@+id/post_image_like_btn"
-                android:layout_width="41dp"
-                android:layout_height="40dp"
-                android:src="@drawable/heart_not_clicked"
+                android:layout_width="40dp"
+                android:layout_height="34dp"
+                android:src="@drawable/baseline_favorite_border_black_36"
                 android:contentDescription="@null"/>
 
             <ImageView
                 android:id="@+id/post_image_comment_btn"
                 android:layout_width="40dp"
                 android:layout_height="34dp"
-                android:src="@drawable/comment"
+                android:src="@drawable/baseline_chat_bubble_outline_black_36"
                 android:layout_toEndOf="@+id/post_image_like_btn"
                 android:layout_marginTop="3dp"
                 android:layout_marginStart="6dp"
@@ -76,7 +76,7 @@
                 android:id="@+id/post_save_comment_btn"
                 android:layout_width="40dp"
                 android:layout_height="39dp"
-                android:src="@drawable/save_unfilled_large_icon"
+                android:src="@drawable/baseline_bookmark_border_black_36"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="3dp"

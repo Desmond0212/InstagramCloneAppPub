@@ -220,7 +220,7 @@
                     android:id="@+id/images_grid_view_btn"
                     android:layout_width="1dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/grid"
+                    android:src="@drawable/baseline_grid_on_black_36"
                     android:layout_weight="1"
                     style="?android:attr/buttonBarButtonStyle"
                     android:contentDescription="@null" />
@@ -229,7 +229,7 @@
                     android:id="@+id/images_save_btn"
                     android:layout_width="1dp"
                     android:layout_height="49dp"
-                    android:src="@drawable/save_large_icon"
+                    android:src="@drawable/baseline_bookmark_black_36"
                     android:layout_weight="1"
                     android:scaleType="fitCenter"
                     style="?android:attr/buttonBarButtonStyle"

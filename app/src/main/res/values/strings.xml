@@ -102,6 +102,9 @@
 
     <!--Fragment Search-->
     <string name="FRAGMENT_SEARCH_TXT_SEARCH">Search&#8230;&#8230;</string>
+    <string name="FRAGMENT_SEARCH_TXT_EMPTY_RESULT_TITLE">Oops&#8230; Result not found</string>
+    <string name="FRAGMENT_SEARCH_TXT_EMPTY_RESULT_MESSAGE">The person you\'re looking for does not seem to exist.</string>
+    <string name="FRAGMENT_SEARCH_TXT_EMPTY_SEARCH_MESSAGE">Please search any username you\'re looking for inside the search bar.</string>
 
     <!--Posts Layout-->
     <string name="POST_LAYOUT_USERNAME_POST">Username</string>

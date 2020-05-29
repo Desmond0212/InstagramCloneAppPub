@@ -24,8 +24,8 @@
             android:id="@+id/story_add"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/add"
-            android:background="@android:color/white"
+            android:src="@drawable/add_icon1"
+            android:background="@android:color/transparent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"/>
 

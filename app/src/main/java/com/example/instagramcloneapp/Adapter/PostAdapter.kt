@@ -249,7 +249,7 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
                 }
                 else
                 {
-                    likeButton.setImageResource(R.drawable.heart_not_clicked)
+                    likeButton.setImageResource(R.drawable.baseline_favorite_border_black_36)
                     likeButton.tag = "Like"
                 }
             }
@@ -291,12 +291,12 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
             {
                 if (p0.child(postid).exists())
                 {
-                    imageView.setImageResource(R.drawable.save_large_icon)
+                    imageView.setImageResource(R.drawable.baseline_bookmark_black_36)
                     imageView.tag = "Saved"
                 }
                 else
                 {
-                    imageView.setImageResource(R.drawable.save_unfilled_large_icon)
+                    imageView.setImageResource(R.drawable.baseline_bookmark_border_black_36)
                     imageView.tag = "Save"
                 }
             }

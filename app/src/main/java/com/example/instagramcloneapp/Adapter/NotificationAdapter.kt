@@ -81,6 +81,7 @@ class NotificationAdapter(private val mContext: Context, private val mNotificati
         if (notification.getIsPost())
         {
             holder.postImage.visibility = View.VISIBLE
+            holder.postImage.clipToOutline = true
             getPostImage(holder.postImage, notification.getPostId()!!)
         }
         else
