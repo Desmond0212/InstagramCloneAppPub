@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/ig_logo_1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StoryActivity"></activity>
+        <activity android:name=".LoadingViewAnimationActivity"></activity>
+        <activity android:name=".StoryActivity" />
         <activity android:name=".AddStoryActivity" />
         <activity android:name=".ShowUsersActivity" />
         <activity android:name=".CommentsActivity" />

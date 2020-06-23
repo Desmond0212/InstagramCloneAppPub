@@ -4,7 +4,11 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
+import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -25,6 +29,73 @@ class SignUpActivity : AppCompatActivity()
         signup_btn.setOnClickListener {
             createAccount()
         }
+
+        setSignInButtonEnabled(false)
+        initUI()
+    }
+
+    private fun initUI()
+    {
+        fullname_signup.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        username_signup.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        email_signup.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?)
+            {
+                if (isEmailValid(email_signup.text.toString()))
+                {
+                    lbl_invalid_email.visibility = View.GONE
+                }
+                else
+                {
+                    lbl_invalid_email.visibility = View.VISIBLE
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        password_signup.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+    }
+
+    private fun setSignInButtonEnabled(isEnabled: Boolean)
+    {
+        if (isEnabled)
+        {
+            signup_btn.isEnabled = true
+            signup_btn.background = resources.getDrawable(R.drawable.rounded_corner_black)
+        }
+        else
+        {
+            signup_btn.isEnabled = false
+            signup_btn.background = resources.getDrawable(R.drawable.rounded_corner_light_gray)
+        }
+    }
+
+    private fun isEmailValid(email: CharSequence): Boolean
+    {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun createAccount()

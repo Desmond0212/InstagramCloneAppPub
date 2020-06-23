@@ -49,14 +49,15 @@
     <string name="ACTIVITY_COMMENTS_BTN_PUBLISH">Publish</string>
     <string name="ACTIVITY_COMMENTS_IMG_CONTENT">null</string>
 
-    <!--Activity Sing In-->
+    <!--Activity Sign In-->
     <string name="ACTIVITY_SING_IN_IMG_CONTENT">null</string>
     <string name="ACTIVITY_SING_IN_TXT_EMAIL">Email</string>
     <string name="ACTIVITY_SING_IN_TXT_PASSWORD">Password</string>
     <string name="ACTIVITY_SING_IN_BTN_LOGIN">Login</string>
     <string name="ACTIVITY_SING_IN_BTN_NEW_ACC">Need New Account? Sign Up</string>
+    <string name="ACTIVITY_SIGN_IN_INVALID_EMAIL">Invalid Email Format!</string>
 
-    <!--Activity Sing Up-->
+    <!--Activity Sign Up-->
     <string name="ACTIVITY_SING_UP_IMG_CONTENT">null</string>
     <string name="ACTIVITY_SING_UP_TXT_FULL_NAME">Full Name</string>
     <string name="ACTIVITY_SING_UP_TXT_USERNAME">Username</string>
