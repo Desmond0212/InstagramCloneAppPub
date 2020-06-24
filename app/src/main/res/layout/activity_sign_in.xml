@@ -10,7 +10,7 @@
     
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="260dp"
+        android:layout_width="160dp"
         android:layout_height="120dp"
         android:src="@drawable/instagram"
         android:tint="@android:color/black"

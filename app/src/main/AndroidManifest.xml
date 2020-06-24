@@ -12,14 +12,15 @@
         android:roundIcon="@drawable/ig_logo_1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoadingViewAnimationActivity"></activity>
+        <activity android:name=".WelcomeActivity"></activity>
+        <activity android:name=".SignInActivity" />
         <activity android:name=".StoryActivity" />
         <activity android:name=".AddStoryActivity" />
         <activity android:name=".ShowUsersActivity" />
         <activity android:name=".CommentsActivity" />
         <activity android:name=".AddPostActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".SignInActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

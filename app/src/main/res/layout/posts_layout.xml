@@ -41,13 +41,20 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/post_image_home"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:src="@drawable/ig_logo_4"
-            android:scaleType="centerCrop"
-            android:contentDescription="@null"/>
+            app:cardCornerRadius="8dp">
+
+            <ImageView
+                android:id="@+id/post_image_home"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:src="@drawable/ig_logo_4"
+                android:scaleType="centerCrop"
+                android:contentDescription="@null"/>
+
+        </androidx.cardview.widget.CardView>
 
         <RelativeLayout
             android:layout_width="match_parent"

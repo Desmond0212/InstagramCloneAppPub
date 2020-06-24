@@ -27,7 +27,7 @@
         android:layout_below="@+id/logo"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="20dp"
         android:inputType="textEmailAddress"
         android:hint="@string/ACTIVITY_SING_UP_TXT_FULL_NAME"
         android:importantForAutofill="no" />
@@ -104,7 +104,7 @@
 
     <View
         android:id="@+id/divider"
-        android:layout_width="3dp"
+        android:layout_width="2dp"
         android:layout_height="40dp"
         android:background="@color/grayColor"
         android:layout_below="@+id/password_signup"
