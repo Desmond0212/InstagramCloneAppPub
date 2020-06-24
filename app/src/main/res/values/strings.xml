@@ -56,6 +56,7 @@
     <string name="ACTIVITY_SING_IN_BTN_LOGIN">Login</string>
     <string name="ACTIVITY_SING_IN_BTN_NEW_ACC">Need New Account? Sign Up</string>
     <string name="ACTIVITY_SIGN_IN_INVALID_EMAIL">Invalid Email Format!</string>
+    <string name="ACTIVITY_SIGN_IN_LOADING_VIEW_TITLE">Please wait, while we are signing in for you, this may take a while&#8230;</string>
 
     <!--Activity Sign Up-->
     <string name="ACTIVITY_SING_UP_IMG_CONTENT">null</string>
@@ -64,7 +65,9 @@
     <string name="ACTIVITY_SING_UP_TXT_EMAIL">Email</string>
     <string name="ACTIVITY_SING_UP_TXT_PASSWORD">Password</string>
     <string name="ACTIVITY_SING_UP_BTN_REGISTER">Register</string>
-    <string name="ACTIVITY_SING_UP_BTN_HAVE_ACC">Already Have An Account? Sign In</string>
+    <string name="ACTIVITY_SING_UP_BTN_HAVE_ACC">Already have an account? Sign In</string>
+    <string name="ACTIVITY_SIGN_UP_INVALID_EMAIL">Invalid Email Format!</string>
+    <string name="ACTIVITY_SIGN_UP_LOADING_VIEW_TITLE">Please wait, while we are signing up for you, this may take a while&#8230;</string>
 
     <!--Activity Story-->
     <string name="ACTIVITY_STORY_IMG_CONTENT">null</string>

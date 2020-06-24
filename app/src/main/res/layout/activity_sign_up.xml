@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:id="@+id/layout_sign_up_relative"
     tools:context=".SignUpActivity">
 
     <ImageView
@@ -64,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
-        android:text="Invalid Email Format!!!"
+        android:text="@string/ACTIVITY_SIGN_UP_INVALID_EMAIL"
         android:textStyle="italic"
         android:textColor="@android:color/holo_red_light"
         android:textSize="12sp"
@@ -91,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/password_signup"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginTop="40dp"
         android:text="@string/ACTIVITY_SING_UP_BTN_REGISTER"
         android:textAllCaps="false"
@@ -114,7 +115,7 @@
         android:id="@+id/signin_link_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="40dp"
         android:background="@android:color/transparent"
@@ -124,5 +125,39 @@
         android:layout_toEndOf="@+id/divider"
         android:layout_below="@+id/password_signup"
         android:textSize="12sp"/>
+
+    <RelativeLayout
+        android:id="@+id/layoutLoadingView_SignIn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:foregroundGravity="center_horizontal"
+        android:background="#CC000000"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animLoadingView_SignIn"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"/>
+
+        <TextView
+            android:id="@+id/lblLoadingViewTitle_SignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ACTIVITY_SIGN_UP_LOADING_VIEW_TITLE"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:lines="2"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_below="@+id/animLoadingView_SignIn"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

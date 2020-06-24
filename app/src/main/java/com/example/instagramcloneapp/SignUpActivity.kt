@@ -1,5 +1,6 @@
 package com.example.instagramcloneapp
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,10 +10,12 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity()
@@ -23,33 +26,94 @@ class SignUpActivity : AppCompatActivity()
         setContentView(R.layout.activity_sign_up)
 
         signin_link_btn.setOnClickListener {
-            startActivity(Intent(this, SignInActivity::class.java))
+            finish()
         }
 
         signup_btn.setOnClickListener {
+            enableComponents(false)
+            startLoadingView(true)
             createAccount()
         }
 
-        setSignInButtonEnabled(false)
+        layout_sign_up_relative.setOnTouchListener { _, _ ->
+            hideSoftKeyboard(this)
+            false
+        }
+
+        setSignUpButtonEnabled(false)
+        startLoadingView(false)
+        enableComponents(true)
         initUI()
     }
 
     private fun initUI()
     {
         fullname_signup.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
+            override fun afterTextChanged(s: Editable?)
+            {
+                if (fullname_signup.text.toString() != "" &&
+                    username_signup.text.toString() != "" &&
+                    email_signup.text.toString() != "" &&
+                    password_signup.text.toString() != "")
+                {
+                    setSignUpButtonEnabled(true)
+                }
+                else
+                {
+                    setSignUpButtonEnabled(false)
+                }
+            }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int)
+            {
+                if (fullname_signup.text.toString() != "" &&
+                    username_signup.text.toString() != "" &&
+                    email_signup.text.toString() != "" &&
+                    password_signup.text.toString() != "")
+                {
+                    setSignUpButtonEnabled(true)
+                }
+                else
+                {
+                    setSignUpButtonEnabled(false)
+                }
+            }
         })
 
         username_signup.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
+            override fun afterTextChanged(s: Editable?)
+            {
+                if (fullname_signup.text.toString() != "" &&
+                    username_signup.text.toString() != "" &&
+                    email_signup.text.toString() != "" &&
+                    password_signup.text.toString() != "")
+                {
+                    setSignUpButtonEnabled(true)
+                }
+                else
+                {
+                    setSignUpButtonEnabled(false)
+                }
+            }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int)
+            {
+                if (fullname_signup.text.toString() != "" &&
+                    username_signup.text.toString() != "" &&
+                    email_signup.text.toString() != "" &&
+                    password_signup.text.toString() != "")
+                {
+                    setSignUpButtonEnabled(true)
+                }
+                else
+                {
+                    setSignUpButtonEnabled(false)
+                }
+            }
         })
 
         email_signup.addTextChangedListener(object: TextWatcher {
@@ -67,19 +131,58 @@ class SignUpActivity : AppCompatActivity()
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int)
+            {
+                if (fullname_signup.text.toString() != "" &&
+                    username_signup.text.toString() != "" &&
+                    email_signup.text.toString() != "" &&
+                    password_signup.text.toString() != "")
+                {
+                    setSignUpButtonEnabled(true)
+                }
+                else
+                {
+                    setSignUpButtonEnabled(false)
+                }
+            }
         })
 
         password_signup.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
+            override fun afterTextChanged(s: Editable?)
+            {
+                if (fullname_signup.text.toString() != "" &&
+                    username_signup.text.toString() != "" &&
+                    email_signup.text.toString() != "" &&
+                    password_signup.text.toString() != "")
+                {
+                    setSignUpButtonEnabled(true)
+                }
+                else
+                {
+                    setSignUpButtonEnabled(false)
+                }
+            }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int)
+            {
+                if (fullname_signup.text.toString() != "" &&
+                    username_signup.text.toString() != "" &&
+                    email_signup.text.toString() != "" &&
+                    password_signup.text.toString() != "")
+                {
+                    setSignUpButtonEnabled(true)
+                }
+                else
+                {
+                    setSignUpButtonEnabled(false)
+                }
+            }
         })
     }
 
-    private fun setSignInButtonEnabled(isEnabled: Boolean)
+    private fun setSignUpButtonEnabled(isEnabled: Boolean)
     {
         if (isEnabled)
         {
@@ -98,6 +201,54 @@ class SignUpActivity : AppCompatActivity()
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
+    private fun startLoadingView(start: Boolean)
+    {
+        if (start)
+        {
+            layoutLoadingView_SignIn.visibility = View.VISIBLE
+            animLoadingView_SignIn.setAnimation("paperplane_lottie_animation.json")
+            animLoadingView_SignIn.playAnimation()
+            animLoadingView_SignIn.loop(true)
+        }
+        else
+        {
+            layoutLoadingView_SignIn.visibility = View.GONE
+            animLoadingView_SignIn.cancelAnimation()
+        }
+    }
+
+    private fun enableComponents(isEnabled: Boolean)
+    {
+        if (isEnabled)
+        {
+            signin_link_btn.isEnabled = true
+            signup_btn.isEnabled = true
+            fullname_signup.isEnabled = true
+            username_signup.isEnabled = true
+            email_signup.isEnabled = true
+            password_signup.isEnabled = true
+        }
+        else
+        {
+            signin_link_btn.isEnabled = false
+            signup_btn.isEnabled = false
+            fullname_signup.isEnabled = false
+            username_signup.isEnabled = false
+            email_signup.isEnabled = false
+            password_signup.isEnabled = false
+        }
+    }
+
+    private fun hideSoftKeyboard(activity: Activity)
+    {
+        val inputMethodManager: InputMethodManager = activity.getSystemService(
+            Activity.INPUT_METHOD_SERVICE
+        ) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(
+            activity.currentFocus?.windowToken, 0
+        )
+    }
+
     private fun createAccount()
     {
         val fullName = fullname_signup.text.toString()
@@ -114,11 +265,11 @@ class SignUpActivity : AppCompatActivity()
 
             else ->
             {
-                val progressDialog = ProgressDialog(this)
+                /*val progressDialog = ProgressDialog(this)
                 progressDialog.setTitle("Sign Up")
                 progressDialog.setMessage("Please wait, this may take a while...")
                 progressDialog.setCanceledOnTouchOutside(false)
-                progressDialog.show()
+                progressDialog.show()*/
 
                 val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -126,21 +277,24 @@ class SignUpActivity : AppCompatActivity()
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful)
                         {
-                            saveUserInfo(fullName, userName, email, password, progressDialog)
+                            saveUserInfo(fullName, userName, email, password)
+
                         }
                         else
                         {
                             val message = task.exception!!.toString()
                             Toast.makeText(this, "Error: $message" , Toast.LENGTH_LONG).show()
                             mAuth.signOut()
-                            progressDialog.dismiss()
+                            startLoadingView(false)
+                            enableComponents(true)
+                            //progressDialog.dismiss()
                         }
                     }
             }
         }
     }
 
-    private fun saveUserInfo(fullName: String, userName: String, email: String, password: String, progressDialog: ProgressDialog)
+    private fun saveUserInfo(fullName: String, userName: String, email: String, password: String)
     {
         val currentUserID = FirebaseAuth.getInstance().currentUser!!.uid
         val usersRef: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
@@ -157,7 +311,10 @@ class SignUpActivity : AppCompatActivity()
             .addOnCompleteListener {task ->
                 if (task.isSuccessful)
                 {
-                    progressDialog.dismiss()
+                    //progressDialog.dismiss()
+                    startLoadingView(false)
+                    enableComponents(true)
+
                     Toast.makeText(this, "Account has been created successfully.", Toast.LENGTH_LONG).show()
 
                     FirebaseDatabase.getInstance().reference.child("Follow")
@@ -176,7 +333,9 @@ class SignUpActivity : AppCompatActivity()
                     val message = task.exception!!.toString()
                     Toast.makeText(this, "Error: $message" , Toast.LENGTH_LONG).show()
                     FirebaseAuth.getInstance().signOut()
-                    progressDialog.dismiss()
+                    startLoadingView(false)
+                    enableComponents(true)
+                    //progressDialog.dismiss()
                 }
             }
     }

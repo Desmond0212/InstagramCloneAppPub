@@ -17,6 +17,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 /**
@@ -120,11 +122,13 @@ class HomeFragment : Fragment()
 
                 if (postList.isNullOrEmpty())
                 {
+                    startAnimation(true)
                     view?.empty_post?.visibility = View.VISIBLE
                     view?.recycler_view_home?.visibility = View.GONE
                 }
                 else
                 {
+                    startAnimation(false)
                     view?.empty_post?.visibility = View.GONE
                     view?.recycler_view_home?.visibility = View.VISIBLE
                 }
@@ -132,6 +136,22 @@ class HomeFragment : Fragment()
 
             override fun onCancelled(p0: DatabaseError) {}
         })
+    }
+
+    private fun startAnimation(isStartAnim: Boolean)
+    {
+        if(isStartAnim)
+        {
+            animLoadingView_home.visibility = View.VISIBLE
+            animLoadingView_home.setAnimation("13525-empty.json")
+            animLoadingView_home.playAnimation()
+            animLoadingView_home.loop(true)
+        }
+        else
+        {
+            animLoadingView_home.visibility = View.GONE
+            animLoadingView_home.cancelAnimation()
+        }
     }
 
     private fun retrieveStories()
