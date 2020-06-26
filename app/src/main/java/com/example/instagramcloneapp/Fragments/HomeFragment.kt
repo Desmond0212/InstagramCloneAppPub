@@ -89,6 +89,12 @@ class HomeFragment : Fragment()
                     retrievePosts()
                     retrieveStories()
                 }
+                else
+                {
+                    startAnimation(true)
+                    view?.empty_post?.visibility = View.VISIBLE
+                    view?.recycler_view_home?.visibility = View.GONE
+                }
             }
 
             override fun onCancelled(p0: DatabaseError) {}
@@ -146,11 +152,6 @@ class HomeFragment : Fragment()
             animLoadingView_home.setAnimation("13525-empty.json")
             animLoadingView_home.playAnimation()
             animLoadingView_home.loop(true)
-        }
-        else
-        {
-            animLoadingView_home.visibility = View.GONE
-            animLoadingView_home.cancelAnimation()
         }
     }
 

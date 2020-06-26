@@ -228,8 +228,8 @@
                 <ImageButton
                     android:id="@+id/images_save_btn"
                     android:layout_width="1dp"
-                    android:layout_height="49dp"
-                    android:src="@drawable/baseline_bookmark_black_36"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/baseline_bookmark_black_48"
                     android:layout_weight="1"
                     android:scaleType="fitCenter"
                     style="?android:attr/buttonBarButtonStyle"

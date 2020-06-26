@@ -88,6 +88,7 @@
 
     <!--Fragment Notifications-->
     <string name="FRAGMENT_NOTIFICATION_TITLE">Notifications</string>
+    <string name="FRAGMENT_NOTIFICATION_MSG">You don\'t have any notification yet.</string>
 
     <!--Fragment Post Detail-->
     <string name="FRAGMENT_POST_DETAIL_TITLE">Photo</string>

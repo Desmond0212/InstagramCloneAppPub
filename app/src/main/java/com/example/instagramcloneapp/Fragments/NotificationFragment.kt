@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_notification.*
 import java.util.Collections.reverse
 import kotlin.collections.ArrayList
 
@@ -63,8 +64,21 @@ class NotificationFragment : Fragment()
                         (notificationList as ArrayList<NotificationModel>).add(notification!!)
                     }
 
+                    animLoadingView_notification.visibility = View.GONE
+                    empty_notification.visibility = View.GONE
+                    recycler_view_notifications.visibility = View.VISIBLE
+
                     reverse(notificationList)
                     notificationAdapter!!.notifyDataSetChanged()
+                }
+                else
+                {
+                    animLoadingView_notification.visibility = View.VISIBLE
+                    empty_notification.visibility = View.VISIBLE
+                    recycler_view_notifications.visibility = View.GONE
+                    animLoadingView_notification.setAnimation("13525-empty.json")
+                    animLoadingView_notification.playAnimation()
+                    animLoadingView_notification.loop(true)
                 }
             }
 
