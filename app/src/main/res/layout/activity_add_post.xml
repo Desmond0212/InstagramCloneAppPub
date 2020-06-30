@@ -27,19 +27,19 @@
 
                 <ImageView
                     android:id="@+id/close_add_post_btn"
-                    android:layout_width="20dp"
-                    android:layout_height="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:src="@drawable/close"
+                    android:src="@drawable/baseline_close_black_36"
                     android:contentDescription="@string/ACTIVITY_ADD_POST_IMG_CONTENT_DESC"/>
 
                 <ImageView
                     android:id="@+id/save_new_post_btn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/save_edited_info"
+                    android:src="@drawable/baseline_done_black_36"
                     android:contentDescription="@string/ACTIVITY_ADD_POST_IMG_CONTENT_DESC"/>
 
             </RelativeLayout>
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/add_image_icon"
+            android:src="@drawable/ig_logo_3"
             android:contentDescription="@string/ACTIVITY_ADD_POST_IMG_CONTENT_DESC"/>
 
         <EditText

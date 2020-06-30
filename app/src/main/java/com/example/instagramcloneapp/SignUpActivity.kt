@@ -1,5 +1,6 @@
 package com.example.instagramcloneapp
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
@@ -20,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity()
 {
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -36,7 +38,13 @@ class SignUpActivity : AppCompatActivity()
         }
 
         layout_sign_up_relative.setOnTouchListener { _, _ ->
+
             hideSoftKeyboard(this)
+            fullname_signup.clearFocus()
+            username_signup.clearFocus()
+            email_signup.clearFocus()
+            password_signup.clearFocus()
+
             false
         }
 
@@ -187,11 +195,13 @@ class SignUpActivity : AppCompatActivity()
         if (isEnabled)
         {
             signup_btn.isEnabled = true
+            signup_btn.isClickable = true
             signup_btn.background = resources.getDrawable(R.drawable.rounded_corner_black)
         }
         else
         {
             signup_btn.isEnabled = false
+            signup_btn.isClickable = false
             signup_btn.background = resources.getDrawable(R.drawable.rounded_corner_light_gray)
         }
     }
@@ -314,6 +324,7 @@ class SignUpActivity : AppCompatActivity()
                     //progressDialog.dismiss()
                     startLoadingView(false)
                     enableComponents(true)
+                    setSignUpButtonEnabled(true)
 
                     Toast.makeText(this, "Account has been created successfully.", Toast.LENGTH_LONG).show()
 
@@ -335,6 +346,7 @@ class SignUpActivity : AppCompatActivity()
                     FirebaseAuth.getInstance().signOut()
                     startLoadingView(false)
                     enableComponents(true)
+                    setSignUpButtonEnabled(true)
                     //progressDialog.dismiss()
                 }
             }

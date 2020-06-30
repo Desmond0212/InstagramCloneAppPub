@@ -173,7 +173,7 @@
                         android:layout_height="32dp"
                         android:text="@string/FRAGMENT_PROFILE_BTN_EDIT_PROFILE"
                         android:textAllCaps="false"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginStart="10dp"
                         android:background="@drawable/buttons_background"/>
 
@@ -232,6 +232,7 @@
                     android:src="@drawable/baseline_bookmark_black_48"
                     android:layout_weight="1"
                     android:scaleType="fitCenter"
+                    android:tint="@color/colorBlack"
                     style="?android:attr/buttonBarButtonStyle"
                     android:contentDescription="@null"/>
 

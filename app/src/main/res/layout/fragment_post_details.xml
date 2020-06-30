@@ -25,13 +25,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ImageButton
+                    android:id="@+id/btnBack_post_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:src="@drawable/baseline_close_black_24"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/FRAGMENT_POST_DETAIL_TITLE"
+                    android:layout_marginStart="10dp"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorBlack"
+                    android:layout_toEndOf="@+id/btnBack_post_detail"
                     android:layout_centerVertical="true"/>
 
             </RelativeLayout>

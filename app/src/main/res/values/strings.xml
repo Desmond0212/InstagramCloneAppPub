@@ -31,7 +31,7 @@
     <string name="STORY_ACTIVITY_LBL_SEEN_NUMBER">%1$s</string>
 
     <!--Activity Account Setting-->
-    <string name="ACTIVITY_ACCOUNT_SETTING_LBL_CHANGE_IMAGE">Change Image</string>
+    <string name="ACTIVITY_ACCOUNT_SETTING_LBL_CHANGE_IMAGE">Tap to change your profile image</string>
     <string name="ACTIVITY_ACCOUNT_SETTING_TXT_FULL_NAME">Full Name</string>
     <string name="ACTIVITY_ACCOUNT_SETTING_TXT_USERNAME">Username</string>
     <string name="ACTIVITY_ACCOUNT_SETTING_TXT_BIO">Buo</string>

@@ -67,4 +67,9 @@ class MainActivity : AppCompatActivity()
         routeFrag.replace(R.id.fragment_container, fragment)
         routeFrag.commit()
     }
+
+    override fun onBackPressed()
+    {
+        //Don't do anything 
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.instagramcloneapp
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
@@ -14,7 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_in.*
-import kotlinx.android.synthetic.main.activity_sign_in.animLoadingView
+
 
 class SignInActivity : AppCompatActivity()
 {
@@ -43,20 +44,36 @@ class SignInActivity : AppCompatActivity()
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun buttonOnClickListener()
     {
         signup_link_btn.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
+            email_login.text = null
+            password_login.text = null
+            lblInvalidEmail.visibility = View.GONE
         }
 
         login_btn.setOnClickListener {
             enableComponents(false)
+            setLoginButtonEnabled(false)
             startLoadingView(true)
             loginUser()
         }
 
         layout_sign_in_relative.setOnTouchListener { _, _ ->
+            if (email_login.text.toString() != "" && !isEmailValid(email_login.text.toString()))
+            {
+                lblInvalidEmail.visibility = View.VISIBLE
+            }
+            else
+            {
+                lblInvalidEmail.visibility = View.GONE
+            }
+
             hideSoftKeyboard(this)
+            email_login.clearFocus()
+            password_login.clearFocus()
             false
         }
     }
@@ -138,11 +155,13 @@ class SignInActivity : AppCompatActivity()
         if (isEnabled)
         {
             login_btn.isEnabled = true
+            login_btn.isClickable = true
             login_btn.background = resources.getDrawable(R.drawable.rounded_corner_black)
         }
         else
         {
             login_btn.isEnabled = false
+            login_btn.isClickable = false
             login_btn.background = resources.getDrawable(R.drawable.rounded_corner_light_gray)
         }
     }
@@ -177,7 +196,6 @@ class SignInActivity : AppCompatActivity()
     {
         if (isEnabled)
         {
-            login_btn.isEnabled = true
             signup_link_btn.isEnabled = true
             email_login.isEnabled = true
             password_login.isEnabled = true
@@ -185,7 +203,6 @@ class SignInActivity : AppCompatActivity()
         }
         else
         {
-            login_btn.isEnabled = false
             signup_link_btn.isEnabled = false
             email_login.isEnabled = false
             password_login.isEnabled = false
@@ -218,6 +235,7 @@ class SignInActivity : AppCompatActivity()
                         progressDialog.dismiss()
                         startLoadingView(false)
                         enableComponents(true)
+                        setLoginButtonEnabled(true)
 
                         val intent = Intent(this, MainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -231,6 +249,7 @@ class SignInActivity : AppCompatActivity()
                         FirebaseAuth.getInstance().signOut()
                         startLoadingView(false)
                         enableComponents(true)
+                        setLoginButtonEnabled(true)
                         //progressDialog.dismiss()
                     }
                 }

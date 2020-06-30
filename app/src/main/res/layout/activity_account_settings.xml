@@ -27,19 +27,19 @@
 
                 <ImageView
                     android:id="@+id/close_profile_btn"
-                    android:layout_width="20dp"
-                    android:layout_height="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:src="@drawable/close"
+                    android:src="@drawable/baseline_close_black_36"
                     android:contentDescription="@string/ACTIVITY_ACCOUNT_SETTING_IMG_CONTENT_DECS"/>
 
                 <ImageView
                     android:id="@+id/save_profile_btn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/save_edited_info"
+                    android:src="@drawable/baseline_done_black_36"
                     android:contentDescription="@string/ACTIVITY_ACCOUNT_SETTING_IMG_CONTENT_DECS"/>
 
             </RelativeLayout>
@@ -64,8 +64,9 @@
         android:text= "@string/ACTIVITY_ACCOUNT_SETTING_LBL_CHANGE_IMAGE"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="6dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
+        android:textStyle="italic"
+        android:textSize="12sp"
+        android:textColor="@color/colorBlack"
         android:layout_below="@+id/profile_image_view_profile_frag"/>
 
     <EditText
@@ -128,7 +129,7 @@
         android:text="@string/ACTIVITY_ACCOUNT_SETTING_BTN_DELETE_ACC"
         android:textAllCaps="false"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/button_background_dark"
         android:textColor="@android:color/white"
         android:textSize="16sp"/>
 

@@ -59,6 +59,14 @@ class AccountSettingsActivity : AppCompatActivity()
                 .start(this)
         }
 
+        profile_image_view_profile_frag.setOnClickListener {
+            checker = true
+
+            CropImage.activity()
+                .setAspectRatio(1,1)
+                .start(this)
+        }
+
         save_profile_btn.setOnClickListener {
             if (checker)
             {

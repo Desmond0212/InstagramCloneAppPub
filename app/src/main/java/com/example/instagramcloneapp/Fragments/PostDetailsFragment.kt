@@ -1,6 +1,7 @@
 package com.example.instagramcloneapp.Fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,12 +10,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagramcloneapp.Adapter.PostAdapter
+import com.example.instagramcloneapp.MainActivity
 import com.example.instagramcloneapp.Model.PostModel
 import com.example.instagramcloneapp.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_post_details.view.*
 
 /**
  * A simple [Fragment] subclass.
@@ -49,6 +52,12 @@ class PostDetailsFragment : Fragment()
         recyclerView.adapter = postAdapter
 
         retrievePosts()
+
+        view.btnBack_post_detail.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         return view
     }

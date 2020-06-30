@@ -101,15 +101,20 @@ class ProfileFragment : Fragment()
         recyclerViewUploadImages.visibility = View.VISIBLE
 
         val uploadImagesBtn: ImageButton
+        val savedImagesBtn: ImageButton
         uploadImagesBtn = view.findViewById(R.id.images_grid_view_btn)
+        savedImagesBtn = view.findViewById(R.id.images_save_btn)
+
         uploadImagesBtn.setOnClickListener {
+            uploadImagesBtn.setColorFilter(resources.getColor(R.color.blackColor))
+            savedImagesBtn.setColorFilter(resources.getColor(R.color.colorBlack))
             recyclerViewSaveImages.visibility = View.GONE
             recyclerViewUploadImages.visibility = View.VISIBLE
         }
 
-        val savedImagesBtn: ImageButton
-        savedImagesBtn = view.findViewById(R.id.images_save_btn)
         savedImagesBtn.setOnClickListener {
+            uploadImagesBtn.setColorFilter(resources.getColor(R.color.colorBlack))
+            savedImagesBtn.setColorFilter(resources.getColor(R.color.blackColor))
             recyclerViewSaveImages.visibility = View.VISIBLE
             recyclerViewUploadImages.visibility = View.GONE
         }
