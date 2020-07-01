@@ -2,13 +2,14 @@ package com.example.instagramcloneapp.Adapter
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
-import androidx.core.content.ContextCompat.startActivity
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagramcloneapp.CommentsActivity
@@ -27,12 +28,17 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.activity_account_settings.*
-import kotlinx.android.synthetic.main.activity_comments.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class PostAdapter(private val mContext: Context, private val mPost: List<PostModel>) : RecyclerView.Adapter<PostAdapter.ViewHolder>()
 {
     private var firebaseUser: FirebaseUser? = null
+    private val secondMillis = 1000
+    private val minuteMillis = 60 * secondMillis
+    private val hourMillis = 60 * minuteMillis
+    private val dayMillis = 24 * hourMillis
 
     inner class ViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView)
     {
@@ -46,6 +52,8 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
         var publisher: TextView
         var description: TextView
         var comments: TextView
+        var dateTime: TextView
+        var timeAgo: TextView
 
         init {
             profileImage = itemView.findViewById(R.id.user_profile_image_post)
@@ -58,6 +66,8 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
             publisher = itemView.findViewById(R.id.publisher)
             description = itemView.findViewById(R.id.description)
             comments = itemView.findViewById(R.id.comments)
+            dateTime = itemView.findViewById(R.id.lblDateTime)
+            timeAgo = itemView.findViewById(R.id.lblTimeAgo)
         }
     }
 
@@ -73,6 +83,7 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
         return mPost.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
         firebaseUser = FirebaseAuth.getInstance().currentUser
@@ -125,6 +136,12 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
         {
             holder.description.visibility = View.VISIBLE
             holder.description.text = post.getDescription()
+        }
+
+        if (!post.getDateTime().isNullOrEmpty())
+        {
+            holder.dateTime.text = getDate(post.getDateTime()!!.toLong(), "dd/MM/yyyy EEE")
+            holder.timeAgo.text = getTimeAgo(post.getDateTime()!!.toLong())
         }
 
         holder.likeButton.setOnClickListener {
@@ -190,6 +207,70 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
         }
     }
 
+    private fun getTimeAgo(time: Long): String?
+    {
+        var tempTime = time
+        val now = System.currentTimeMillis()
+
+        if (tempTime < 1000000000000L)
+        {
+            tempTime *= 1000
+        }
+
+        if (tempTime > now || tempTime <= 0)
+        {
+            return null
+        }
+
+        val diff: Int = now.toInt() - tempTime.toInt()
+
+        return when
+        {
+            diff < minuteMillis ->
+            {
+                "just now"
+            }
+            diff < 2 * minuteMillis ->
+            {
+                "a minute ago"
+            }
+
+            diff < 50 * minuteMillis ->
+            {
+                val temp = diff / minuteMillis
+                "$temp minutes ago"
+            }
+            diff < 90 * minuteMillis ->
+            {
+                "an hour ago"
+            }
+            diff < 24 * hourMillis ->
+            {
+                val temp = diff / hourMillis
+                "$temp hours ago"
+            }
+            diff < 48 * hourMillis -> {
+                "yesterday"
+            }
+            else ->
+            {
+                val temp = diff / dayMillis
+                "$temp days ago"
+            }
+        }
+    }
+
+    private fun getDate(milliSeconds: Long, dateFormat: String?): String?
+    {
+        // Create a DateFormatter object for displaying date in specified format.
+        val formatter = SimpleDateFormat(dateFormat)
+        // Create a calendar object that will convert the date and time value in milliseconds to date.
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.timeInMillis = milliSeconds
+
+        return formatter.format(calendar.time)
+    }
+
     private fun numberOfLikes(likes: TextView, postid: String?)
     {
         val likesRef = FirebaseDatabase.getInstance().reference.child("Likes").child(postid!!)
@@ -218,14 +299,22 @@ class PostAdapter(private val mContext: Context, private val mPost: List<PostMod
             {
                 if (p0.exists())
                 {
-                    if (p0.childrenCount.toInt() == 1)
+                    when
                     {
-                        comments.text = mContext.getString(R.string.POST_ADAPTER_TOTAL_COMMENT, p0.childrenCount.toString())
+                        p0.childrenCount.toInt() == 1 ->
+                        {
+                            comments.text = mContext.getString(R.string.POST_ADAPTER_TOTAL_COMMENT, p0.childrenCount.toString())
+                        }
+
+                        else ->
+                        {
+                            comments.text = mContext.getString(R.string.POST_ADAPTER_TOTAL_COMMENTS, p0.childrenCount.toString())
+                        }
                     }
-                    else
-                    {
-                        comments.text = mContext.getString(R.string.POST_ADAPTER_TOTAL_COMMENTS, p0.childrenCount.toString())
-                    }
+                }
+                else
+                {
+                    comments.visibility = View.GONE
                 }
             }
 

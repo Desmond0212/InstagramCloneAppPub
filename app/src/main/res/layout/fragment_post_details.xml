@@ -30,7 +30,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:src="@drawable/baseline_close_black_24"/>
+                    android:src="@drawable/baseline_close_black_24"
+                    android:contentDescription="@null"/>
 
                 <TextView
                     android:layout_width="wrap_content"

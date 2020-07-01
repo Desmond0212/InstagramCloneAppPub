@@ -58,6 +58,10 @@ class CommentsActivity : AppCompatActivity()
                 addComment()
             }
         }
+
+        btnBack_Comment.setOnClickListener {
+            finish()
+        }
     }
 
     private fun userInfo()

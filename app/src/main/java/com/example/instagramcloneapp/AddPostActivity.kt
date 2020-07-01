@@ -104,6 +104,7 @@ class AddPostActivity : AppCompatActivity()
                         postMap["description"] = description_post.text.toString().toLowerCase()
                         postMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
                         postMap["postimage"] = myUrl
+                        postMap["dateTime"] = System.currentTimeMillis().toString()
 
                         ref.child(postId).updateChildren(postMap)
 
