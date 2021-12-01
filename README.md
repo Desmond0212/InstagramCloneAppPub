@@ -15,3 +15,4 @@ after 24 hours.
 - Any Post uploaded by the user will be showing under User Profile.
 
 
+https://user-images.githubusercontent.com/46517400/144267383-9351d436-8e75-48a8-b659-00691c8da606.mp4
